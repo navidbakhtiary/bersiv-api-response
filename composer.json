@@ -1,0 +1,30 @@
+{
+	"name": "navidbakhtiary/bersiv-api-response",
+	"description": "Laravel package for standardized response structures",
+	"type": "library",
+	"license": "MIT",
+	"autoload": {
+		"psr-4": {
+			"NavidBakhtiary\\BersivApiResponse\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"NavidBakhtiary\\BersivApiResponse\\Tests\\": "tests/"
+		}
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"NavidBakhtiary\\BersivApiResponse\\BersivApiResponseServiceProvider"
+			]
+		}
+	},
+	"require-dev": {
+		"laravel/pint": "^1.0",
+		"orchestra/testbench": "^9.11",
+		"phpunit/phpunit": "^11.5"
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
+}
