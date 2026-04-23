@@ -58,6 +58,31 @@ class RangesResponseActionDateRangeTest extends TestCase
 		$this->assertSame($payload, $response_data['data']);
 	}
 
+	public function testDateRangeReturnsEmptyDataArrayByDefault(): void
+	{
+		$action = new RangesResponseAction();
+
+		$response = $action->dateRange('user');
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame([], $response_data['data']);
+	}
+
+	public function testDateRangeReturnsEmptyMessageWhenRangeIsOmitted(): void
+	{
+		$action = new RangesResponseAction();
+
+		$response = $action->dateRange('user');
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame(
+			__('bersiv-api-response::messages.successful.empty_date_range', ['model' => 'user']),
+			$response_data['message']
+		);
+	}
+
 	public function testDateRangeReturnsRetrievedMessageWhenRangeExists(): void
 	{
 		$action = new RangesResponseAction();

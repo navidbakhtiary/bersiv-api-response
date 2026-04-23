@@ -78,6 +78,17 @@ class AuthenticationResponseActionInvalidLoginCredentialsTest extends TestCase
 		$this->assertSame($errors, $response_data['errors']);
 	}
 
+	public function testInvalidLoginCredentialsReturnsEmptyErrorsArrayByDefault(): void
+	{
+		$action = new AuthenticationResponseAction();
+
+		$response = $action->invalidLoginCredentials();
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame([], $response_data['errors']);
+	}
+
 	public function testInvalidLoginCredentialsReturnsFailureStatusFlag(): void
 	{
 		$action = new AuthenticationResponseAction();

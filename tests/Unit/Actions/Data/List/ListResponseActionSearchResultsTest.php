@@ -85,6 +85,31 @@ class ListResponseActionSearchResultsTest extends TestCase
 		);
 	}
 
+	public function testSearchResultsReturnsEmptyDataArrayByDefault(): void
+	{
+		$action = new ListResponseAction();
+
+		$response = $action->searchResults('user');
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame([], $response_data['data']);
+	}
+
+	public function testSearchResultsReturnsEmptySearchMessageWhenDataResourceIsOmitted(): void
+	{
+		$action = new ListResponseAction();
+
+		$response = $action->searchResults('user');
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame(
+			__('bersiv-api-response::messages.successful.empty_searched_query_list', ['entity' => 'user']),
+			$response_data['message']
+		);
+	}
+
 	public function testSearchResultsReturnsOkStatusCode(): void
 	{
 		$action = new ListResponseAction();

@@ -3,6 +3,7 @@
 namespace NavidBakhtiary\BersivApiResponse\Tests\Unit\Actions\Data;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
 use NavidBakhtiary\BersivApiResponse\Actions\Data\ListResponseAction;
 use NavidBakhtiary\BersivApiResponse\Tests\TestCase;
 
@@ -45,6 +46,32 @@ class ListResponseActionAttributesListTest extends TestCase
 			__('bersiv-api-response::messages.successful.attributes_list_retrieved', ['model' => 'user']),
 			$response_data['message']
 		);
+	}
+
+	public function testAttributesListReturnsGivenJsonResourceData(): void
+	{
+		$action = new ListResponseAction();
+
+		$attributes = ['name', 'email'];
+
+		$resource = JsonResource::make($attributes);
+
+		$response = $action->attributesList('user', $resource);
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame($attributes, $response_data['data']);
+	}
+
+	public function testAttributesListReturnsEmptyDataArrayByDefault(): void
+	{
+		$action = new ListResponseAction();
+
+		$response = $action->attributesList('user');
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame([], $response_data['data']);
 	}
 
 	public function testAttributesListReturnsEmptyMessageWhenAttributesDoNotExist(): void

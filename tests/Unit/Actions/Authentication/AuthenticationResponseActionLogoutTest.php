@@ -21,7 +21,7 @@ class AuthenticationResponseActionLogoutTest extends TestCase
 		$this->assertArrayNotHasKey('errors', $response_data);
 	}
 
-	public function testLogoutReturnsEmptyArrayDataByDefault(): void
+	public function testLogoutReturnsEmptyDataArrayByDefault(): void
 	{
 		$action = new AuthenticationResponseAction();
 

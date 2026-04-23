@@ -87,6 +87,31 @@ class ListResponseActionHandleTest extends TestCase
 		);
 	}
 
+	public function testHandleReturnsEmptyDataArrayByDefault(): void
+	{
+		$action = new ListResponseAction();
+
+		$response = $action->handle('user');
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame([], $response_data['data']);
+	}
+
+	public function testHandleReturnsEmptyListMessageWhenDataResourceIsOmitted(): void
+	{
+		$action = new ListResponseAction();
+
+		$response = $action->handle('user');
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame(
+			__('bersiv-api-response::messages.successful.empty_models_list', ['model' => 'user']),
+			$response_data['message']
+		);
+	}
+
 	public function testHandleReturnsOkStatusCode(): void
 	{
 		$action = new ListResponseAction();

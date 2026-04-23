@@ -60,7 +60,7 @@ class RangesResponseActionAttributeRangesTest extends TestCase
 			'credit' => [
 				'max' => 1000,
 				'min' => 200,
-			]
+			],
 		];
 
 		$resource = JsonResource::make($payload);
@@ -96,6 +96,31 @@ class RangesResponseActionAttributeRangesTest extends TestCase
 		$action = new RangesResponseAction();
 
 		$response = $action->attributeRanges('user', []);
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame(
+			__('bersiv-api-response::messages.successful.empty_attributes_ranges', ['model' => 'user']),
+			$response_data['message']
+		);
+	}
+
+	public function testAttributeRangesReturnsEmptyDataArrayByDefault(): void
+	{
+		$action = new RangesResponseAction();
+
+		$response = $action->attributeRanges('user');
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame([], $response_data['data']);
+	}
+
+	public function testAttributeRangesReturnsEmptyMessageWhenRangesAreOmitted(): void
+	{
+		$action = new RangesResponseAction();
+
+		$response = $action->attributeRanges('user');
 
 		$response_data = $response->getData(true);
 

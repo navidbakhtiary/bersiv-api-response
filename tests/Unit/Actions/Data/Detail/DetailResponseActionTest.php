@@ -171,4 +171,26 @@ class DetailResponseActionTest extends TestCase
 
 		$this->assertFalse($response_data['success']);
 	}
+
+	public function testHandleMatchesNotFoundResponseWhenModelResourceIsOmitted(): void
+	{
+		$action = new DetailResponseAction();
+
+		$actual_response = $action->handle('user');
+		$expected_response = NotFoundResponse::resourceNotFound('user');
+
+		$this->assertSame($expected_response->getStatusCode(), $actual_response->getStatusCode());
+		$this->assertSame($expected_response->getContent(), $actual_response->getContent());
+	}
+
+	public function testHandleReturnsEmptyErrorsArrayWhenModelResourceIsNull(): void
+	{
+		$action = new DetailResponseAction();
+
+		$response = $action->handle('user', null);
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame([], $response_data['errors']);
+	}
 }

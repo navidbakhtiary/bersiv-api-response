@@ -33,6 +33,17 @@ class AuthenticationResponseActionUnauthenticatedTest extends TestCase
 		$this->assertArrayNotHasKey('data', $response_data);
 	}
 
+	public function testUnauthenticatedReturnsEmptyErrorsArrayByDefault(): void
+	{
+		$action = new AuthenticationResponseAction();
+
+		$response = $action->unauthenticated();
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame([], $response_data['errors']);
+	}
+
 	public function testUnauthenticatedReturnsFailureResponseShape(): void
 	{
 		$action = new AuthenticationResponseAction();
