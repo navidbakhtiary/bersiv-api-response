@@ -8,7 +8,7 @@ use Illuminate\Http\Response;
 /**
  * Represents HTTP 401 Unauthorized responses.
  *
- * This response should be used when the client is not authenticated
+ * This response should be used when the client is unauthenticated
  * or provides invalid authentication credentials.
  */
 class UnauthorizedResponse extends FailureResponse
@@ -25,18 +25,36 @@ class UnauthorizedResponse extends FailureResponse
 	}
 
 	/**
-	 * Return a response for invalid login credentials.
+	 * Return an unauthorized response for invalid login credentials.
+	 *
+	 * @param JsonResource|array $errors Optional structured error details.
+	 *
+	 * @return JsonResponse The formatted JSON response.
 	 */
-	public static function invalidCredentials()
+	public static function invalidLoginCredentials(JsonResource|array $errors = []): JsonResponse
 	{
-		return (new self(__('bersiv-api-response::auths.failures.incorrect_credentials')))->send();
+		return (
+			new self(
+				__('bersiv-api-response::auths.failures.incorrect_credentials'),
+				$errors
+			)
+		)->send();
 	}
 
 	/**
-	 * Return a response for unauthenticated access.
+	 * Return an unauthorized response for unauthenticated access.
+	 *
+	 * @param JsonResource|array $errors Optional structured error details.
+	 *
+	 * @return JsonResponse The formatted JSON response.
 	 */
-	public static function unauthenticated()
+	public static function unauthenticated(JsonResource|array $errors = []): JsonResponse
 	{
-		return (new self(__('bersiv-api-response::auths.failures.invalid_token')))->send();
+		return (
+			new self(
+				__('bersiv-api-response::auths.failures.invalid_token'),
+				$errors
+			)
+		)->send();
 	}
 }

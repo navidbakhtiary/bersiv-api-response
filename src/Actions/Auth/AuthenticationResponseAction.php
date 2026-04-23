@@ -49,30 +49,46 @@ class AuthenticationResponseAction
 	/**
 	 * Return a success response for a completed logout operation.
 	 *
+	 * @param JsonResource|array $data Optional logout response payload.
+	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function logout(): JsonResponse
+	public function logout(JsonResource|array $data = []): JsonResponse
 	{
-		return (new OkResponse(__('bersiv-api-response::auths.successful.logout')))->send();
+		return (
+			new OkResponse(
+				__('bersiv-api-response::auths.successful.logout'),
+				$data
+			)
+		)->send();
 	}
 
 	/**
 	 * Return a success response when the provided token is valid.
 	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public function tokenValid(): JsonResponse
-	{
-		return (new OkResponse(__('bersiv-api-response::auths.successful.valid_token')))->send();
-	}
-
-	/**
-	 * Return a response for requests without valid authentication.
+	 * @param JsonResource|array $data Optional token validation response payload.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function unauthenticated(): JsonResponse
+	public function tokenValid(JsonResource|array $data = []): JsonResponse
 	{
-		return UnauthorizedResponse::unauthenticated();
+		return (
+			new OkResponse(
+				__('bersiv-api-response::auths.successful.valid_token'),
+				$data
+			)
+		)->send();
+	}
+
+	/**
+	 * Return an unauthorized response for unauthenticated requests.
+	 *
+	 * @param JsonResource|array $errors Optional structured error details.
+	 *
+	 * @return JsonResponse The formatted JSON response.
+	 */
+	public function unauthenticated(JsonResource|array $errors = []): JsonResponse
+	{
+		return UnauthorizedResponse::unauthenticated($errors);
 	}
 }
