@@ -3,6 +3,7 @@
 namespace NavidBakhtiary\BersivApiResponse\Actions\Data;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
 use NavidBakhtiary\BersivApiResponse\Responses\Successes\OkResponse;
 
 /**
@@ -26,9 +27,13 @@ class ValuesResponseAction
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function handle(string $model_name, string $attribute, array $values): JsonResponse
+	public function handle(string $model_name, string $attribute, JsonResource | array $values): JsonResponse
 	{
-		$message = count($values) > 0
+		$values_count = is_array($values)
+			? count($values)
+			: count($values->resolve());
+
+		$message = $values_count > 0
 			? __('bersiv-api-response::messages.successful.values_list_retrieved', [
 				'model' => $model_name,
 				'attribute' => $attribute,
