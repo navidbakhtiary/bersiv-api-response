@@ -23,11 +23,11 @@ class ValuesResponseAction
 	 *
 	 * @param string $model_name The entity/model display name used in messages.
 	 * @param string $attribute The attribute name used in messages.
-	 * @param array $values The list of values for the given attribute.
+	 * @param array|JsonResource $values The list of values for the given attribute.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function handle(string $model_name, string $attribute, JsonResource | array $values): JsonResponse
+	public function handle(string $model_name, string $attribute, array|JsonResource $values = []): JsonResponse
 	{
 		$values_count = is_array($values)
 			? count($values)

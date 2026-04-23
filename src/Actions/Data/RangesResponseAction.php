@@ -23,11 +23,11 @@ class RangesResponseAction
 	 * Return a response for attribute ranges.
 	 *
 	 * @param string $model_name The entity/model display name used in messages.
-	 * @param JsonResource|array $ranges The attribute range data.
+	 * @param array|JsonResource $ranges The attribute range data.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function attributeRanges(string $model_name, JsonResource|array $ranges): JsonResponse
+	public function attributeRanges(string $model_name, array|JsonResource $ranges = []): JsonResponse
 	{
 		$message = Utilities::collectionHasItems($ranges)
 			? __('bersiv-api-response::messages.successful.attributes_ranges_retrieved', ['model' => $model_name])
@@ -40,11 +40,11 @@ class RangesResponseAction
 	 * Return a response for date ranges.
 	 *
 	 * @param string $model_name The entity/model display name used in messages.
-	 * @param JsonResource|array $date_range_resource The date range data.
+	 * @param array|JsonResource $date_range_resource The date range data.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function dateRange(string $model_name, JsonResource|array $date_range_resource): JsonResponse
+	public function dateRange(string $model_name, array|JsonResource $date_range_resource = []): JsonResponse
 	{
 		$message = Utilities::collectionHasItems($date_range_resource)
 			? __('bersiv-api-response::messages.successful.date_range_retrieved', ['model' => $model_name])

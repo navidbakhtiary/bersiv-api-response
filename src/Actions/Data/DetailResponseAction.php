@@ -24,11 +24,11 @@ class DetailResponseAction
 	 * Return a detail response for a single entity.
 	 *
 	 * @param string $model_name The entity/model display name used in messages.
-	 * @param JsonResource|array|null $model_resource The resolved resource data or null.
+	 * @param array|JsonResource|null $model_resource The resolved resource data or null.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function handle(string $model_name, JsonResource|array|null $model_resource): JsonResponse
+	public function handle(string $model_name, array|JsonResource|null $model_resource = null): JsonResponse
 	{
 		if (Utilities::isResourceEmpty($model_resource))
 		{

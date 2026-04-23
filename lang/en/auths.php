@@ -4,7 +4,7 @@ return [
 	'failures' => [
 		'incorrect_credentials' => 'Invalid credentials.',
 		'invalid_captcha' => 'Invalid captcha.',
-		'invalid_token' => 'Unauthenticated.',
+		'unauthenticated' => 'Unauthenticated.',
 	],
 	'successful' => [
 		'login' => 'Logged in successfully.',

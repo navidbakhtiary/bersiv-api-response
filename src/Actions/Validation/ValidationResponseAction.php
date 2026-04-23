@@ -3,6 +3,7 @@
 namespace NavidBakhtiary\BersivApiResponse\Actions\Validation;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
 use NavidBakhtiary\BersivApiResponse\Responses\Failures\ForbiddenResponse;
 use NavidBakhtiary\BersivApiResponse\Responses\Failures\UnprocessableEntityResponse;
 
@@ -26,11 +27,13 @@ class ValidationResponseAction
 	 * This is useful when the request is blocked because captcha validation
 	 * did not pass.
 	 *
+	 * @param array|JsonResource $errors Optional structured error details.
+	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function invalidCaptcha(): JsonResponse
+	public function invalidCaptcha(array|JsonResource $errors = []): JsonResponse
 	{
-		return ForbiddenResponse::invalidCaptcha();
+		return ForbiddenResponse::invalidCaptcha($errors);
 	}
 
 	/**
@@ -40,12 +43,13 @@ class ValidationResponseAction
 	 * or do not exist in the expected context.
 	 *
 	 * @param array $attributes The invalid attribute names.
+	 * @param array|JsonResource $errors Optional structured error details.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function invalidAttributes(array $attributes): JsonResponse
+	public function invalidAttributes(array $attributes, array|JsonResource $errors = []): JsonResponse
 	{
-		return UnprocessableEntityResponse::invalidAttributes($attributes);
+		return UnprocessableEntityResponse::invalidAttributes($attributes, $errors);
 	}
 
 	/**
@@ -55,11 +59,11 @@ class ValidationResponseAction
 	 * or request data that does not meet application rules.
 	 *
 	 * @param string|null $message Optional custom validation message.
-	 * @param array $errors Optional structured validation errors.
+	 * @param array|JsonResource $errors Optional structured validation errors.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function invalidInputs(?string $message = null, array $errors = []): JsonResponse
+	public function invalidInputs(?string $message = null, array|JsonResource $errors = []): JsonResponse
 	{
 		return UnprocessableEntityResponse::invalidInputs($message, $errors);
 	}

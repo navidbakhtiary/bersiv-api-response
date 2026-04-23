@@ -7,6 +7,31 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class Utilities
 {
 	/**
+	 * Determine whether the given collection contains items.
+	 *
+	 * This method supports:
+	 * - JsonResource instances
+	 * - arrays
+	 *
+	 * If the resolved resource contains a top-level "data" key,
+	 * that nested array is checked as the actual collection payload.
+	 */
+	public static function collectionHasItems(array|JsonResource $data_resource): bool
+	{
+		if ($data_resource instanceof JsonResource)
+		{
+			$data_resource = $data_resource->resolve();
+		}
+
+		if (is_array($data_resource) && array_key_exists('data', $data_resource) && is_array($data_resource['data']))
+		{
+			$data_resource = $data_resource['data'];
+		}
+
+		return count($data_resource) > 0;
+	}
+
+	/**
 	 * Convert an array of values into a human-readable string.
 	 *
 	 * Examples:
@@ -37,21 +62,6 @@ class Utilities
 	}
 
 	/**
-	 * Determine whether the given collection contains items.
-	 *
-	 * This method supports:
-	 * - JsonResource instances
-	 * - arrays
-	 *
-	 * If the resolved resource contains a top-level "data" key,
-	 * that nested array is checked as the actual collection payload.
-	 */
-	public static function collectionHasItems(JsonResource|array $data_resource): bool
-	{
-		return !self::isResourceEmpty($data_resource);
-	}
-
-	/**
 	 * Determine whether the given single-resource payload is empty.
 	 *
 	 * This method supports:
@@ -59,7 +69,7 @@ class Utilities
 	 * - JsonResource instances
 	 * - arrays
 	 */
-	public static function isResourceEmpty(JsonResource|array|null $model_resource): bool
+	public static function isResourceEmpty(array|JsonResource|null $model_resource): bool
 	{
 		if (is_null($model_resource))
 		{
@@ -87,7 +97,7 @@ class Utilities
 	 * - JsonResource instances
 	 * - arrays
 	 */
-	public static function resourceHasData(JsonResource|array|null $model_resource): bool
+	public static function resourceHasData(array|JsonResource|null $model_resource): bool
 	{
 		return !self::isResourceEmpty($model_resource);
 	}

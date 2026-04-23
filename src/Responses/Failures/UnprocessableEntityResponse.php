@@ -2,8 +2,8 @@
 
 namespace NavidBakhtiary\BersivApiResponse\Responses\Failures;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
 use NavidBakhtiary\BersivApiResponse\Helpers\Utilities;
 
 /**
@@ -19,9 +19,9 @@ class UnprocessableEntityResponse extends FailureResponse
 	 * Create a new unprocessable entity response instance.
 	 *
 	 * @param string $message The response message.
-	 * @param JsonResource|array $errors Optional structured error details.
+	 * @param array|JsonResource $errors Optional structured error details.
 	 */
-	public function __construct(string $message, JsonResource|array $errors = [])
+	public function __construct(string $message, array|JsonResource $errors = [])
 	{
 		parent::__construct(JsonResponse::HTTP_UNPROCESSABLE_ENTITY, $message, $errors);
 	}
@@ -30,19 +30,21 @@ class UnprocessableEntityResponse extends FailureResponse
 	 * Return a response for invalid attributes.
 	 *
 	 * @param array $attributes The invalid attribute names.
+	 * @param array|JsonResource $errors Optional structured error details.
 	 *
-	 * @return \Illuminate\Http\JsonResponse The formatted JSON response.
+	 * @return JsonResponse The formatted JSON response.
 	 */
-	public static function invalidAttributes(array $attributes)
+	public static function invalidAttributes(array $attributes, array|JsonResource $errors = []): JsonResponse
 	{
 		return (
 			new self(
 				__(
-					'messages.failures.invalid_attributes',
+					'bersiv-api-response::messages.failures.invalid_attributes',
 					[
 						'attributes' => Utilities::createStringFromArray($attributes),
 					]
-				)
+				),
+				$errors
 			)
 		)->send();
 	}
@@ -51,11 +53,11 @@ class UnprocessableEntityResponse extends FailureResponse
 	 * Return a response for invalid request inputs.
 	 *
 	 * @param string|null $message Optional custom validation message.
-	 * @param array $errors Optional structured validation errors.
+	 * @param array|JsonResource $errors Optional structured validation errors.
 	 *
-	 * @return \Illuminate\Http\JsonResponse The formatted JSON response.
+	 * @return JsonResponse The formatted JSON response.
 	 */
-	public static function invalidInputs(?string $message = null, array $errors = [])
+	public static function invalidInputs(?string $message = null, array|JsonResource $errors = []): JsonResponse
 	{
 		return (
 			new self(

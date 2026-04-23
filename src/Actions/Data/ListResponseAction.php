@@ -23,11 +23,11 @@ class ListResponseAction
 	 * Return a response for a collection of entities.
 	 *
 	 * @param string $model_name The entity/model display name used in messages.
-	 * @param JsonResource|array $data_resource The collection resource or array data.
+	 * @param array|JsonResource $data_resource The collection resource or array data.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function handle(string $model_name, JsonResource|array $data_resource): JsonResponse
+	public function handle(string $model_name, array|JsonResource $data_resource = []): JsonResponse
 	{
 		$message = Utilities::collectionHasItems($data_resource)
 			? __('bersiv-api-response::messages.successful.models_list_retrieved', ['model' => $model_name])
@@ -40,11 +40,11 @@ class ListResponseAction
 	 * Return a response for search results.
 	 *
 	 * @param string $query_entity The searched entity name.
-	 * @param JsonResource|array $data_resource The search result payload.
+	 * @param array|JsonResource $data_resource The search result payload.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function searchResults(string $query_entity, JsonResource|array $data_resource): JsonResponse
+	public function searchResults(string $query_entity, array|JsonResource $data_resource = []): JsonResponse
 	{
 		$message = Utilities::collectionHasItems($data_resource)
 			? __('bersiv-api-response::messages.successful.searched_query_list_retrieved', ['entity' => $query_entity])
@@ -58,11 +58,11 @@ class ListResponseAction
 	 *
 	 * @param string $model_name The entity/model display name used in messages.
 	 * @param string|array $attributes The filter attributes.
-	 * @param JsonResource|array $data_resource The filtered data payload.
+	 * @param array|JsonResource $data_resource The filtered data payload.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function filteredList(string $model_name, string|array $attributes, JsonResource|array $data_resource): JsonResponse
+	public function filteredList(string $model_name, string|array $attributes, array|JsonResource $data_resource = []): JsonResponse
 	{
 		$attributes_text = is_array($attributes)
 			? Utilities::createStringFromArray($attributes)
@@ -85,13 +85,17 @@ class ListResponseAction
 	 * Return a response for an attributes list.
 	 *
 	 * @param string $model_name The entity/model display name used in messages.
-	 * @param array $attributes The list of attributes.
+	 * @param array|JsonResource $attributes The list of attributes.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function attributesList(string $model_name, array $attributes): JsonResponse
+	public function attributesList(string $model_name, array|JsonResource $attributes = []): JsonResponse
 	{
-		$message = count($attributes) > 0
+		$attributes_count = is_array($attributes)
+			? count($attributes)
+			: count($attributes->resolve());
+
+		$message = $attributes_count > 0
 			? __('bersiv-api-response::messages.successful.attributes_list_retrieved', ['model' => $model_name])
 			: __('bersiv-api-response::messages.successful.empty_attributes_list', ['model' => $model_name]);
 

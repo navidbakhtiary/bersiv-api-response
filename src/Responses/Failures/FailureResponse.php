@@ -17,9 +17,9 @@ class FailureResponse extends ApiResponse
 	 *
 	 * @param int $status_code The HTTP status code.
 	 * @param string $message The response message.
-	 * @param JsonResource|array $errors The response error payload.
+	 * @param array|JsonResource $errors Optional structured error details.
 	 */
-	public function __construct(int $status_code, string $message, JsonResource|array $errors = [])
+	public function __construct(int $status_code, string $message, array|JsonResource $errors = [])
 	{
 		parent::__construct($status_code, $message, $errors);
 

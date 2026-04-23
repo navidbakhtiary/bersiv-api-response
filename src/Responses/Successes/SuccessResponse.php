@@ -17,9 +17,9 @@ class SuccessResponse extends ApiResponse
 	 *
 	 * @param int $status_code The HTTP status code.
 	 * @param string $message The response message.
-	 * @param JsonResource|array $data The response data payload.
+	 * @param array|JsonResource $data Optional response data payload.
 	 */
-	public function __construct(int $status_code, string $message, JsonResource|array $data = [])
+	public function __construct(int $status_code, string $message, array|JsonResource $data = [])
 	{
 		parent::__construct($status_code, $message, $data);
 

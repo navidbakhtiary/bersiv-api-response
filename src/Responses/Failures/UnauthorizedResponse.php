@@ -17,9 +17,9 @@ class UnauthorizedResponse extends FailureResponse
 	 * Create a new unauthorized response instance.
 	 *
 	 * @param string $message The response message.
-	 * @param JsonResource|array $errors Optional structured error details.
+	 * @param array|JsonResource $errors Optional structured error details.
 	 */
-	public function __construct(string $message, JsonResource|array $errors = [])
+	public function __construct(string $message, array|JsonResource $errors = [])
 	{
 		parent::__construct(JsonResponse::HTTP_UNAUTHORIZED, $message, $errors);
 	}
@@ -27,11 +27,11 @@ class UnauthorizedResponse extends FailureResponse
 	/**
 	 * Return an unauthorized response for invalid login credentials.
 	 *
-	 * @param JsonResource|array $errors Optional structured error details.
+	 * @param array|JsonResource $errors Optional structured error details.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public static function invalidLoginCredentials(JsonResource|array $errors = []): JsonResponse
+	public static function invalidLoginCredentials(array|JsonResource $errors = []): JsonResponse
 	{
 		return (
 			new self(
@@ -44,11 +44,11 @@ class UnauthorizedResponse extends FailureResponse
 	/**
 	 * Return an unauthorized response for unauthenticated access.
 	 *
-	 * @param JsonResource|array $errors Optional structured error details.
+	 * @param array|JsonResource $errors Optional structured error details.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public static function unauthenticated(JsonResource|array $errors = []): JsonResponse
+	public static function unauthenticated(array|JsonResource $errors = []): JsonResponse
 	{
 		return (
 			new self(

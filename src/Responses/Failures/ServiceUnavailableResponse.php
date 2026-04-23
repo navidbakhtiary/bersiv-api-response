@@ -2,8 +2,8 @@
 
 namespace NavidBakhtiary\BersivApiResponse\Responses\Failures;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * Represents HTTP 503 Service Unavailable responses.
@@ -17,9 +17,9 @@ class ServiceUnavailableResponse extends FailureResponse
 	 * Create a new service unavailable response instance.
 	 *
 	 * @param string $message The response message.
-	 * @param JsonResource|array $errors Optional structured error details.
+	 * @param array|JsonResource $errors Optional structured error details.
 	 */
-	public function __construct(string $message, JsonResource|array $errors = [])
+	public function __construct(string $message, array|JsonResource $errors = [])
 	{
 		parent::__construct(JsonResponse::HTTP_SERVICE_UNAVAILABLE, $message, $errors);
 	}
@@ -27,10 +27,17 @@ class ServiceUnavailableResponse extends FailureResponse
 	/**
 	 * Return a response for an unavailable external API.
 	 *
-	 * @return \Illuminate\Http\JsonResponse The formatted JSON response.
+	 * @param array|JsonResource $errors Optional structured error details.
+	 *
+	 * @return JsonResponse The formatted JSON response.
 	 */
-	public static function externalApiUnavailable()
+	public static function externalApiUnavailable(array|JsonResource $errors = []): JsonResponse
 	{
-		return (new self(__('bersiv-api-response::messages.failures.unavailable_external_api')))->send();
+		return (
+			new self(
+				__('bersiv-api-response::messages.failures.unavailable_external_api'),
+				$errors
+			)
+		)->send();
 	}
 }

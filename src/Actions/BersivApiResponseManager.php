@@ -49,11 +49,11 @@ class BersivApiResponseManager
 	 * Return a response for attribute ranges.
 	 *
 	 * @param string $model_name The entity/model display name used in messages.
-	 * @param JsonResource|array $ranges The attribute range data.
+	 * @param array|JsonResource $ranges The attribute range data.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function attributeRanges(string $model_name, JsonResource|array $ranges): JsonResponse
+	public function attributeRanges(string $model_name, array|JsonResource $ranges): JsonResponse
 	{
 		return $this->ranges_response_action->attributeRanges($model_name, $ranges);
 	}
@@ -62,11 +62,11 @@ class BersivApiResponseManager
 	 * Return a response for a single entity detail.
 	 *
 	 * @param string $model_name The entity/model display name used in messages.
-	 * @param JsonResource|array|null $model_resource The single resource payload.
+	 * @param array|JsonResource|null $model_resource The single resource payload.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function detail(string $model_name, JsonResource|array|null $model_resource): JsonResponse
+	public function detail(string $model_name, array|JsonResource|null $model_resource = null): JsonResponse
 	{
 		return $this->detail_response_action->handle($model_name, $model_resource);
 	}
@@ -75,11 +75,11 @@ class BersivApiResponseManager
 	 * Return a response for date ranges.
 	 *
 	 * @param string $model_name The entity/model display name used in messages.
-	 * @param JsonResource|array $date_range_resource The date range data.
+	 * @param array|JsonResource $date_range_resource The date range data.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function dateRange(string $model_name, JsonResource|array $date_range_resource): JsonResponse
+	public function dateRange(string $model_name, array|JsonResource $date_range_resource): JsonResponse
 	{
 		return $this->ranges_response_action->dateRange($model_name, $date_range_resource);
 	}
@@ -88,11 +88,11 @@ class BersivApiResponseManager
 	 * Return a response when the external API rejects the request.
 	 *
 	 * @param string|null $message Optional custom message.
-	 * @param array $errors Optional structured error details.
+	 * @param array|JsonResource $errors Optional structured error details.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function externalApiRejected(?string $message = null, array $errors = []): JsonResponse
+	public function externalApiRejected(?string $message = null, array|JsonResource $errors = []): JsonResponse
 	{
 		return $this->external_api_response_action->rejected($message, $errors);
 	}
@@ -100,54 +100,61 @@ class BersivApiResponseManager
 	/**
 	 * Return a response when the external API is unavailable.
 	 *
+	 * @param array|JsonResource $errors Optional structured error details.
+	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function externalApiUnavailable(): JsonResponse
+	public function externalApiUnavailable(array|JsonResource $errors = []): JsonResponse
 	{
-		return $this->external_api_response_action->unavailable();
+		return $this->external_api_response_action->unavailable($errors);
 	}
 
 	/**
 	 * Return a response for invalid attributes.
 	 *
 	 * @param array $attributes The invalid attribute names.
+	 * @param array|JsonResource $errors Optional structured error details.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function invalidAttributes(array $attributes): JsonResponse
+	public function invalidAttributes(array $attributes, array|JsonResource $errors = []): JsonResponse
 	{
-		return $this->validation_response_action->invalidAttributes($attributes);
+		return $this->validation_response_action->invalidAttributes($attributes, $errors);
 	}
 
 	/**
 	 * Return a response for invalid captcha verification.
 	 *
+	 * @param array|JsonResource $errors Optional structured error details.
+	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function invalidCaptcha(): JsonResponse
+	public function invalidCaptcha(array|JsonResource $errors = []): JsonResponse
 	{
-		return $this->validation_response_action->invalidCaptcha();
+		return $this->validation_response_action->invalidCaptcha($errors);
 	}
 
 	/**
 	 * Return a response for invalid login credentials.
 	 *
+	 * @param array|JsonResource $errors Optional structured error details.
+	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function invalidCredentials(): JsonResponse
+	public function invalidLoginCredentials(array|JsonResource $errors = []): JsonResponse
 	{
-		return $this->authentication_response_action->invalidCredentials();
+		return $this->authentication_response_action->invalidLoginCredentials($errors);
 	}
 
 	/**
 	 * Return a response for invalid request inputs.
 	 *
 	 * @param string|null $message Optional custom validation message.
-	 * @param array $errors Optional structured validation errors.
+	 * @param array|JsonResource $errors Optional structured validation errors.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function invalidInputs(?string $message = null, array $errors = []): JsonResponse
+	public function invalidInputs(?string $message = null, array|JsonResource $errors = []): JsonResponse
 	{
 		return $this->validation_response_action->invalidInputs($message, $errors);
 	}
@@ -156,11 +163,11 @@ class BersivApiResponseManager
 	 * Return a response for a collection of entities.
 	 *
 	 * @param string $model_name The entity/model display name used in messages.
-	 * @param JsonResource|array $data_resource The collection resource or array data.
+	 * @param array|JsonResource $data_resource The collection resource or array data.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function list(string $model_name, JsonResource|array $data_resource): JsonResponse
+	public function list(string $model_name, array|JsonResource $data_resource): JsonResponse
 	{
 		return $this->list_response_action->handle($model_name, $data_resource);
 	}
@@ -168,44 +175,50 @@ class BersivApiResponseManager
 	/**
 	 * Return a success response for a completed logout operation.
 	 *
+	 * @param array|JsonResource $data Optional logout response payload.
+	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function logout(): JsonResponse
+	public function logout(array|JsonResource $data = []): JsonResponse
 	{
-		return $this->authentication_response_action->logout();
+		return $this->authentication_response_action->logout($data);
 	}
 
 	/**
 	 * Return a response for search results.
 	 *
-	 * @param string $model_name The entity/model display name used in messages.
-	 * @param JsonResource|array $data_resource The collection resource or array data.
+	 * @param string $query_entity The searched entity name.
+	 * @param array|JsonResource $data_resource The collection resource or array data.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function searchResults(string $model_name, JsonResource|array $data_resource): JsonResponse
+	public function searchResults(string $query_entity, array|JsonResource $data_resource): JsonResponse
 	{
-		return $this->list_response_action->handle($model_name, $data_resource);
+		return $this->list_response_action->searchResults($query_entity, $data_resource);
 	}
 
 	/**
 	 * Return a success response when the provided token is valid.
 	 *
+	 * @param array|JsonResource $data Optional token validation response payload.
+	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function tokenValid(): JsonResponse
+	public function tokenValid(array|JsonResource $data = []): JsonResponse
 	{
-		return $this->authentication_response_action->tokenValid();
+		return $this->authentication_response_action->tokenValid($data);
 	}
 
 	/**
 	 * Return a response for unauthenticated access.
 	 *
+	 * @param array|JsonResource $errors Optional structured error details.
+	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function unauthenticated(): JsonResponse
+	public function unauthenticated(array|JsonResource $errors = []): JsonResponse
 	{
-		return $this->authentication_response_action->unauthenticated();
+		return $this->authentication_response_action->unauthenticated($errors);
 	}
 
 	/**
@@ -213,11 +226,11 @@ class BersivApiResponseManager
 	 *
 	 * @param string $model_name The entity/model display name used in messages.
 	 * @param string $attribute The attribute name used in messages.
-	 * @param array $values The list of values for the given attribute.
+	 * @param array|JsonResource $values The list of values for the given attribute.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function valuesList(string $model_name, string $attribute, array $values): JsonResponse
+	public function valuesList(string $model_name, string $attribute, array|JsonResource $values = []): JsonResponse
 	{
 		return $this->values_response_action->handle($model_name, $attribute, $values);
 	}

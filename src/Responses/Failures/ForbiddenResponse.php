@@ -2,8 +2,8 @@
 
 namespace NavidBakhtiary\BersivApiResponse\Responses\Failures;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * Represents HTTP 403 Forbidden responses.
@@ -17,9 +17,9 @@ class ForbiddenResponse extends FailureResponse
 	 * Create a new forbidden response instance.
 	 *
 	 * @param string $message The response message.
-	 * @param JsonResource|array $errors Optional structured error details.
+	 * @param array|JsonResource $errors Optional structured error details.
 	 */
-	public function __construct(string $message, JsonResource|array $errors = [])
+	public function __construct(string $message, array|JsonResource $errors = [])
 	{
 		parent::__construct(JsonResponse::HTTP_FORBIDDEN, $message, $errors);
 	}
@@ -27,10 +27,17 @@ class ForbiddenResponse extends FailureResponse
 	/**
 	 * Return a response for invalid captcha verification.
 	 *
-	 * @return \Illuminate\Http\JsonResponse The formatted JSON response.
+	 * @param array|JsonResource $errors Optional structured error details.
+	 *
+	 * @return JsonResponse The formatted JSON response.
 	 */
-	public static function invalidCaptcha()
+	public static function invalidCaptcha(array|JsonResource $errors = []): JsonResponse
 	{
-		return (new self(__('bersiv-api-response::auths.failures.invalid_captcha')))->send();
+		return (
+			new self(
+				__('bersiv-api-response::auths.failures.invalid_captcha'),
+				$errors
+			)
+		)->send();
 	}
 }

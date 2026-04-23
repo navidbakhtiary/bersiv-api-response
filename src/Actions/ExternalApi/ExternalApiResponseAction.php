@@ -3,6 +3,7 @@
 namespace NavidBakhtiary\BersivApiResponse\Actions\ExternalApi;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
 use NavidBakhtiary\BersivApiResponse\Responses\Failures\BadGatewayResponse;
 use NavidBakhtiary\BersivApiResponse\Responses\Failures\ServiceUnavailableResponse;
 
@@ -28,11 +29,11 @@ class ExternalApiResponseAction
 	 * - malformed request accepted by this app but rejected upstream
 	 *
 	 * @param string|null $message Optional custom message.
-	 * @param array $errors Optional structured error details.
+	 * @param array|JsonResource $errors Optional structured error details.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function rejected(?string $message = null, array $errors = []): JsonResponse
+	public function rejected(?string $message = null, array|JsonResource $errors = []): JsonResponse
 	{
 		return BadGatewayResponse::externalApiRejected($message, $errors);
 	}
@@ -46,10 +47,12 @@ class ExternalApiResponseAction
 	 * - upstream downtime
 	 * - temporary service outage
 	 *
+	 * @param array|JsonResource $errors Optional structured error details.
+	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function unavailable(): JsonResponse
+	public function unavailable(array|JsonResource $errors = []): JsonResponse
 	{
-		return ServiceUnavailableResponse::externalApiUnavailable();
+		return ServiceUnavailableResponse::externalApiUnavailable($errors);
 	}
 }

@@ -4,6 +4,9 @@ namespace NavidBakhtiary\BersivApiResponse;
 
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Service provider for the Bersiv API Response package.
+ */
 class BersivApiResponseServiceProvider extends ServiceProvider
 {
 	/**

@@ -12,7 +12,7 @@ use NavidBakhtiary\BersivApiResponse\Responses\Successes\OkResponse;
  *
  * This action centralizes common authentication response cases such as:
  * - successful login
- * - invalid credentials
+ * - invalid login credentials
  * - unauthenticated requests
  * - successful logout
  * - valid token confirmation
@@ -20,13 +20,13 @@ use NavidBakhtiary\BersivApiResponse\Responses\Successes\OkResponse;
 class AuthenticationResponseAction
 {
 	/**
-	 * Return a response for incorrect login credentials.
+	 * Return an unauthorized response for invalid login credentials.
 	 *
-	 * @param JsonResource|array $errors Optional structured error details.
+	 * @param array|JsonResource $errors Optional structured error details.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function invalidLoginCredentials(JsonResource|array $errors = []): JsonResponse
+	public function invalidLoginCredentials(array|JsonResource $errors = []): JsonResponse
 	{
 		return UnauthorizedResponse::invalidLoginCredentials($errors);
 	}
@@ -34,11 +34,11 @@ class AuthenticationResponseAction
 	/**
 	 * Return a success response for a completed login operation.
 	 *
-	 * @param JsonResource|array $data The login response payload.
+	 * @param array|JsonResource $data The login response payload.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function login(JsonResource|array $data = []): JsonResponse
+	public function login(array|JsonResource $data = []): JsonResponse
 	{
 		return (
 			new OkResponse(
@@ -51,11 +51,11 @@ class AuthenticationResponseAction
 	/**
 	 * Return a success response for a completed logout operation.
 	 *
-	 * @param JsonResource|array $data Optional logout response payload.
+	 * @param array|JsonResource $data Optional logout response payload.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function logout(JsonResource|array $data = []): JsonResponse
+	public function logout(array|JsonResource $data = []): JsonResponse
 	{
 		return (
 			new OkResponse(
@@ -68,11 +68,11 @@ class AuthenticationResponseAction
 	/**
 	 * Return a success response when the provided token is valid.
 	 *
-	 * @param JsonResource|array $data Optional token validation response payload.
+	 * @param array|JsonResource $data Optional token validation response payload.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function tokenValid(JsonResource|array $data = []): JsonResponse
+	public function tokenValid(array|JsonResource $data = []): JsonResponse
 	{
 		return (
 			new OkResponse(
@@ -85,11 +85,11 @@ class AuthenticationResponseAction
 	/**
 	 * Return an unauthorized response for unauthenticated requests.
 	 *
-	 * @param JsonResource|array $errors Optional structured error details.
+	 * @param array|JsonResource $errors Optional structured error details.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function unauthenticated(JsonResource|array $errors = []): JsonResponse
+	public function unauthenticated(array|JsonResource $errors = []): JsonResponse
 	{
 		return UnauthorizedResponse::unauthenticated($errors);
 	}

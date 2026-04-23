@@ -2,8 +2,8 @@
 
 namespace NavidBakhtiary\BersivApiResponse\Responses\Failures;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * Represents HTTP 502 Bad Gateway responses.
@@ -17,9 +17,9 @@ class BadGatewayResponse extends FailureResponse
 	 * Create a new bad gateway response instance.
 	 *
 	 * @param string $message The response message.
-	 * @param JsonResource|array $errors Optional structured error details.
+	 * @param array|JsonResource $errors Optional structured error details.
 	 */
-	public function __construct(string $message, JsonResource|array $errors = [])
+	public function __construct(string $message, array|JsonResource $errors = [])
 	{
 		parent::__construct(JsonResponse::HTTP_BAD_GATEWAY, $message, $errors);
 	}
@@ -28,11 +28,11 @@ class BadGatewayResponse extends FailureResponse
 	 * Return a response when the external API rejects the request.
 	 *
 	 * @param string|null $message Optional custom message.
-	 * @param JsonResource|array $errors Optional structured error details.
+	 * @param array|JsonResource $errors Optional structured error details.
 	 *
-	 * @return \Illuminate\Http\JsonResponse The formatted JSON response.
+	 * @return JsonResponse The formatted JSON response.
 	 */
-	public static function externalApiRejected(?string $message = null, JsonResource|array $errors = [])
+	public static function externalApiRejected(?string $message = null, array|JsonResource $errors = []): JsonResponse
 	{
 		return (
 			new self(

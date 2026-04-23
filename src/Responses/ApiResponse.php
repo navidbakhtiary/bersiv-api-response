@@ -46,9 +46,9 @@ class ApiResponse
 	 *
 	 * @param int $status_code The HTTP status code.
 	 * @param string $message The response message.
-	 * @param JsonResource|array $info The response payload.
+	 * @param array|JsonResource $info Optional response payload.
 	 */
-	public function __construct(int $status_code, string $message, JsonResource|array $info = [])
+	public function __construct(int $status_code, string $message, array|JsonResource $info = [])
 	{
 		$this->status_code = $status_code;
 		$this->message = $message;

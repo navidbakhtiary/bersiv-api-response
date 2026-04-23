@@ -2,8 +2,8 @@
 
 namespace NavidBakhtiary\BersivApiResponse\Responses\Failures;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * Represents HTTP 429 Too Many Requests responses.
@@ -14,18 +14,27 @@ class TooManyRequestsResponse extends FailureResponse
 	 * Create a new too many requests response instance.
 	 *
 	 * @param string $message The response message.
-	 * @param JsonResource|array $errors Optional structured error details.
+	 * @param array|JsonResource $errors Optional structured error details.
 	 */
-	public function __construct(string $message, JsonResource|array $errors = [])
+	public function __construct(string $message, array|JsonResource $errors = [])
 	{
 		parent::__construct(JsonResponse::HTTP_TOO_MANY_REQUESTS, $message, $errors);
 	}
 
 	/**
 	 * Return a default too many requests response.
+	 *
+	 * @param array|JsonResource $errors Optional structured error details.
+	 *
+	 * @return JsonResponse The formatted JSON response.
 	 */
-	public static function tooManyRequests()
+	public static function tooManyRequests(array|JsonResource $errors = []): JsonResponse
 	{
-		return (new self(__('bersiv-api-response::messages.failures.server_restriction')))->send();
+		return (
+			new self(
+				__('bersiv-api-response::messages.failures.server_restriction'),
+				$errors
+			)
+		)->send();
 	}
 }
