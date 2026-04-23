@@ -2,7 +2,8 @@
 
 namespace NavidBakhtiary\BersivApiResponse\Tests\Unit\Actions\Authentication;
 
-use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
 use NavidBakhtiary\BersivApiResponse\Actions\Auth\AuthenticationResponseAction;
 use NavidBakhtiary\BersivApiResponse\Tests\TestCase;
 
@@ -31,13 +32,47 @@ class AuthenticationResponseActionTokenValidTest extends TestCase
 		$this->assertSame([], $response_data['data']);
 	}
 
+	public function testTokenValidReturnsGivenArrayData(): void
+	{
+		$action = new AuthenticationResponseAction();
+
+		$payload = [
+			'user_id' => 1,
+			'valid' => true,
+		];
+
+		$response = $action->tokenValid($payload);
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame($payload, $response_data['data']);
+	}
+
+	public function testTokenValidReturnsGivenJsonResourceData(): void
+	{
+		$action = new AuthenticationResponseAction();
+
+		$payload = [
+			'user_id' => 1,
+			'valid' => true,
+		];
+
+		$resource = JsonResource::make($payload);
+
+		$response = $action->tokenValid($resource);
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame($payload, $response_data['data']);
+	}
+
 	public function testTokenValidReturnsOkStatusCode(): void
 	{
 		$action = new AuthenticationResponseAction();
 
 		$response = $action->tokenValid();
 
-		$this->assertSame(Response::HTTP_OK, $response->getStatusCode());
+		$this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
 	}
 
 	public function testTokenValidReturnsSuccessResponseShape(): void

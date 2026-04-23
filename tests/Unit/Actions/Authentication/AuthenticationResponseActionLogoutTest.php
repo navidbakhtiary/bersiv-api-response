@@ -2,7 +2,8 @@
 
 namespace NavidBakhtiary\BersivApiResponse\Tests\Unit\Actions\Authentication;
 
-use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
 use NavidBakhtiary\BersivApiResponse\Actions\Auth\AuthenticationResponseAction;
 use NavidBakhtiary\BersivApiResponse\Tests\TestCase;
 
@@ -31,13 +32,45 @@ class AuthenticationResponseActionLogoutTest extends TestCase
 		$this->assertSame([], $response_data['data']);
 	}
 
+	public function testLogoutReturnsGivenArrayData(): void
+	{
+		$action = new AuthenticationResponseAction();
+
+		$payload = [
+			'revoked_tokens_count' => 2,
+		];
+
+		$response = $action->logout($payload);
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame($payload, $response_data['data']);
+	}
+
+	public function testLogoutReturnsGivenJsonResourceData(): void
+	{
+		$action = new AuthenticationResponseAction();
+
+		$payload = [
+			'revoked_tokens_count' => 2,
+		];
+
+		$resource = JsonResource::make($payload);
+
+		$response = $action->logout($resource);
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame($payload, $response_data['data']);
+	}
+
 	public function testLogoutReturnsOkStatusCode(): void
 	{
 		$action = new AuthenticationResponseAction();
 
 		$response = $action->logout();
 
-		$this->assertSame(Response::HTTP_OK, $response->getStatusCode());
+		$this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
 	}
 
 	public function testLogoutReturnsSuccessfulLogoutMessage(): void
@@ -60,8 +93,8 @@ class AuthenticationResponseActionLogoutTest extends TestCase
 		$response_data = $response->getData(true);
 
 		$this->assertArrayHasKey('data', $response_data);
-		$this->assertArrayHasKey('success', $response_data);
 		$this->assertArrayHasKey('message', $response_data);
+		$this->assertArrayHasKey('success', $response_data);
 	}
 
 	public function testLogoutReturnsSuccessStatusFlag(): void

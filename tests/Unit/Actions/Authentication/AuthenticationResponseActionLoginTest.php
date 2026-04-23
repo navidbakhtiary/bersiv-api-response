@@ -2,8 +2,8 @@
 
 namespace NavidBakhtiary\BersivApiResponse\Tests\Unit\Actions\Authentication;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Response;
 use NavidBakhtiary\BersivApiResponse\Actions\Auth\AuthenticationResponseAction;
 use NavidBakhtiary\BersivApiResponse\Tests\TestCase;
 
@@ -67,13 +67,24 @@ class AuthenticationResponseActionLoginTest extends TestCase
 		$this->assertSame($payload, $response_data['data']);
 	}
 
+	public function testLoginReturnsEmptyDataArrayByDefault(): void
+	{
+		$action = new AuthenticationResponseAction();
+
+		$response = $action->login();
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame([], $response_data['data']);
+	}
+
 	public function testLoginReturnsOkStatusCode(): void
 	{
 		$action = new AuthenticationResponseAction();
 
 		$response = $action->login();
 
-		$this->assertSame(Response::HTTP_OK, $response->getStatusCode());
+		$this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
 	}
 
 	public function testLoginReturnsSuccessfulLoginMessage(): void
@@ -96,8 +107,8 @@ class AuthenticationResponseActionLoginTest extends TestCase
 		$response_data = $response->getData(true);
 
 		$this->assertArrayHasKey('data', $response_data);
-		$this->assertArrayHasKey('success', $response_data);
 		$this->assertArrayHasKey('message', $response_data);
+		$this->assertArrayHasKey('success', $response_data);
 	}
 
 	public function testLoginReturnsSuccessStatusFlag(): void
