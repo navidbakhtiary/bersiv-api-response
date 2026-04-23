@@ -20,6 +20,18 @@ use NavidBakhtiary\BersivApiResponse\Responses\Successes\OkResponse;
 class AuthenticationResponseAction
 {
 	/**
+	 * Return a response for incorrect login credentials.
+	 *
+	 * @param JsonResource|array $errors Optional structured error details.
+	 *
+	 * @return JsonResponse The formatted JSON response.
+	 */
+	public function invalidLoginCredentials(JsonResource|array $errors = []): JsonResponse
+	{
+		return UnauthorizedResponse::invalidLoginCredentials($errors);
+	}
+
+	/**
 	 * Return a success response for a completed login operation.
 	 *
 	 * @param JsonResource|array $data The login response payload.
@@ -34,16 +46,6 @@ class AuthenticationResponseAction
 				$data
 			)
 		)->send();
-	}
-
-	/**
-	 * Return a response for incorrect login credentials.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public function invalidCredentials(): JsonResponse
-	{
-		return UnauthorizedResponse::invalidCredentials();
 	}
 
 	/**
