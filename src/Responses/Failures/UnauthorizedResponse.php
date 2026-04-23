@@ -3,7 +3,7 @@
 namespace NavidBakhtiary\BersivApiResponse\Responses\Failures;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 
 /**
  * Represents HTTP 401 Unauthorized responses.
@@ -21,7 +21,7 @@ class UnauthorizedResponse extends FailureResponse
 	 */
 	public function __construct(string $message, JsonResource|array $errors = [])
 	{
-		parent::__construct(Response::HTTP_UNAUTHORIZED, $message, $errors);
+		parent::__construct(JsonResponse::HTTP_UNAUTHORIZED, $message, $errors);
 	}
 
 	/**

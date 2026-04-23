@@ -3,7 +3,7 @@
 namespace NavidBakhtiary\BersivApiResponse\Responses\Successes;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 
 /**
  * Represents HTTP 200 OK success responses.
@@ -22,6 +22,6 @@ class OkResponse extends SuccessResponse
 	 */
 	public function __construct(string $message, JsonResource|array $data = [])
 	{
-		parent::__construct(Response::HTTP_OK, $message, $data);
+		parent::__construct(JsonResponse::HTTP_OK, $message, $data);
 	}
 }

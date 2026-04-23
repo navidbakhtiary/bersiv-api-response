@@ -3,7 +3,7 @@
 namespace NavidBakhtiary\BersivApiResponse\Responses\Failures;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 
 /**
  * Represents HTTP 500 Internal Server Error responses.
@@ -18,7 +18,7 @@ class InternalServerErrorResponse extends FailureResponse
 	 */
 	public function __construct(string $message, JsonResource|array $errors = [])
 	{
-		parent::__construct(Response::HTTP_INTERNAL_SERVER_ERROR, $message, $errors);
+		parent::__construct(JsonResponse::HTTP_INTERNAL_SERVER_ERROR, $message, $errors);
 	}
 
 	/**

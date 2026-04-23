@@ -3,7 +3,7 @@
 namespace NavidBakhtiary\BersivApiResponse\Responses\Failures;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 
 /**
  * Represents HTTP 429 Too Many Requests responses.
@@ -18,7 +18,7 @@ class TooManyRequestsResponse extends FailureResponse
 	 */
 	public function __construct(string $message, JsonResource|array $errors = [])
 	{
-		parent::__construct(Response::HTTP_TOO_MANY_REQUESTS, $message, $errors);
+		parent::__construct(JsonResponse::HTTP_TOO_MANY_REQUESTS, $message, $errors);
 	}
 
 	/**
