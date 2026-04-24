@@ -62,7 +62,7 @@ class ListResponseAction
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function filteredList(string $model_name, string|array $attributes, array|JsonResource $data_resource = []): JsonResponse
+	public function filteredList(string $model_name, string|array $attributes = "", array|JsonResource $data_resource = []): JsonResponse
 	{
 		$attributes_text = is_array($attributes)
 			? Utilities::createStringFromArray($attributes)
