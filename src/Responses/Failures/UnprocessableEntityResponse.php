@@ -66,4 +66,24 @@ class UnprocessableEntityResponse extends FailureResponse
 			)
 		)->send();
 	}
+
+	/**
+	 * Return a response when the requested process cannot be accepted.
+	 *
+	 * @param string $process_name The display name of the requested process.
+	 * @param array|JsonResource $errors Optional structured error details.
+	 *
+	 * @return JsonResponse The formatted JSON response.
+	 */
+	public static function processRejected(string $process_name, array|JsonResource $errors = []): JsonResponse
+	{
+		return (
+			new self(
+				$message ?? __('bersiv-api-response::messages.failures.process_rejected', [
+					'process_name' => $process_name,
+				]),
+				$errors
+			)
+		)->send();
+	}
 }
