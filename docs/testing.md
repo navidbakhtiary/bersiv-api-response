@@ -29,7 +29,7 @@ A typical package `TestCase` for this package looks like this:
 
 namespace NavidBakhtiary\BersivApiResponse\Tests;
 
-use NavidBakhtiary\BersivApiResponse\BersivApiResponseServiceProvider;
+use NavidBakhtiary\BersivApiResponse\Providers\BersivApiResponseServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra

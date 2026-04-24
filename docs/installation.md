@@ -18,7 +18,7 @@ The package service provider is registered automatically through Laravel package
 Registered provider:
 
 ```php
-NavidBakhtiary\BersivApiResponse\BersivApiResponseServiceProvider::class
+NavidBakhtiary\BersivApiResponse\Providers\BersivApiResponseServiceProvider::class
 ```
 
 ## Translations
