@@ -14,6 +14,10 @@ class BersivApiResponseServiceProvider extends ServiceProvider
 	 */
 	public function boot(): void
 	{
+		$this->publishes([
+			__DIR__ . '/../lang' => lang_path('vendor/bersiv-api-response'),
+		], 'bersiv-api-response-translations');
+
 		$this->loadTranslationsFrom(__DIR__ . '/../lang', 'bersiv-api-response');
 	}
 
