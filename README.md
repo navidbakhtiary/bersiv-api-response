@@ -20,6 +20,22 @@ A lightweight Laravel package for standardized JSON response structures.
 composer require navidbakhtiary/bersiv-api-response
 ```
 
+```md
+### Translations
+
+The package uses namespaced translation keys such as:
+
+```php
+__('bersiv-api-response::auths.successful.login');
+__('bersiv-api-response::messages.failures.invalid_inputs');
+```
+
+To customize the package translations in your application, publish them with:
+
+```php
+php artisan vendor:publish --tag=bersiv-api-response-translations
+```
+
 ## Response Structure
 
 ### Success response

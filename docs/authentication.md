@@ -263,3 +263,5 @@ Example response:
 __('bersiv-api-response::auths.successful.login')
 __('bersiv-api-response::auths.failures.incorrect_credentials')
 ```
+
+- If you want to override authentication-related response messages, publish the package translations with `php artisan vendor:publish --tag=bersiv-api-response-translations`.

@@ -23,12 +23,24 @@ NavidBakhtiary\BersivApiResponse\BersivApiResponseServiceProvider::class
 
 ## Translations
 
-The package loads its translation files through the bersiv-api-response namespace.
+The package loads its translation files through the `bersiv-api-response` namespace.
 
 Example:
 
 ```php
 __('bersiv-api-response::messages.successful.model_found', ['model' => 'user']);
+```
+
+If you want to customize the package translations in your Laravel application, publish them with:
+
+```php
+php artisan vendor:publish --tag=bersiv-api-response-translations
+```
+
+The translation files will be copied to:
+
+```
+lang/vendor/bersiv-api-response
 ```
 
 ## Composer Autoloading During Package Development
