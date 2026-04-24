@@ -22,6 +22,23 @@ class NotFoundResponse extends FailureResponse
 	}
 
 	/**
+	 * Return a response when no AI answer is available.
+	 *
+	 * @param array|JsonResource $errors Optional structured error details.
+	 *
+	 * @return JsonResponse The formatted JSON response.
+	 */
+	public static function noAiAnswer(array|JsonResource $errors = []): JsonResponse
+	{
+		return ( 
+			new self(
+				__('bersiv-api-response::messages.failures.no_ai_answer'),
+				$errors
+			)
+		)->send();
+	}
+
+	/**
 	 * Return a default response for a missing resource.
 	 *
 	 * @param string $entity_name The missing resource name.
