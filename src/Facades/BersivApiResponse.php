@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Illuminate\Http\JsonResponse unauthenticated(array|\Illuminate\Http\Resources\Json\JsonResource $errors = [])
  * @method static \Illuminate\Http\JsonResponse valuesList(string $model_name, string $attribute, array|\Illuminate\Http\Resources\Json\JsonResource $values = [])
  *
- * @see \NavidBakhtiary\BersivApiResponse\BersivApiResponseManager
+ * @see \NavidBakhtiary\BersivApiResponse\Managers\BersivApiResponseManager
  */
 class BersivApiResponse extends Facade
 {
