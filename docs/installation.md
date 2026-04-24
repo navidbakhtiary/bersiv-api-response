@@ -13,12 +13,22 @@ composer require navidbakhtiary/bersiv-api-response
 
 ## Package Discovery
 
-The package service provider is registered through Laravel package discovery.
+The package service provider is registered automatically through Laravel package discovery.
 
 Registered provider:
 
 ```php
 NavidBakhtiary\BersivApiResponse\BersivApiResponseServiceProvider::class
+```
+
+## Translations
+
+The package loads its translation files through the bersiv-api-response namespace.
+
+Example:
+
+```php
+__('bersiv-api-response::messages.successful.model_found', ['model' => 'user']);
 ```
 
 ## Composer Autoloading During Package Development
