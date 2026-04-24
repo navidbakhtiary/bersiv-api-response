@@ -1,8 +1,9 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse;
+namespace NavidBakhtiary\BersivApiResponse\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use NavidBakhtiary\BersivApiResponse\Managers\BersivApiResponseManager;
 
 /**
  * Service provider for the Bersiv API Response package.
@@ -18,7 +19,7 @@ class BersivApiResponseServiceProvider extends ServiceProvider
 			__DIR__ . '/../lang' => lang_path('vendor/bersiv-api-response'),
 		], 'bersiv-api-response-translations');
 
-		$this->loadTranslationsFrom(__DIR__ . '/../lang', 'bersiv-api-response');
+		$this->loadTranslationsFrom(__DIR__ . '/../../lang', 'bersiv-api-response');
 	}
 
 	/**
