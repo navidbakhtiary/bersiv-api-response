@@ -1,25 +1,19 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Tests\Unit\Actions\Authentication;
+namespace NavidBakhtiary\BersivApiResponse\Tests\Unit\Actions\Auth;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use NavidBakhtiary\BersivApiResponse\Actions\Auth\AuthenticationResponseAction;
 use NavidBakhtiary\BersivApiResponse\Tests\TestCase;
 
-class AuthenticationResponseActionLoginTest extends TestCase
+class AuthenticationResponseActionLogoutTest extends TestCase
 {
-	public function testLoginReturnsDataKey(): void
+	public function testLogoutReturnsDataKey(): void
 	{
 		$action = new AuthenticationResponseAction();
 
-		$response = $action->login([
-			'token' => 'sample-token',
-			'user' => [
-				'email' => 'navid@example.com',
-				'id' => 1,
-			],
-		]);
+		$response = $action->logout();
 
 		$response_data = $response->getData(true);
 
@@ -27,82 +21,74 @@ class AuthenticationResponseActionLoginTest extends TestCase
 		$this->assertArrayNotHasKey('errors', $response_data);
 	}
 
-	public function testLoginReturnsGivenArrayData(): void
+	public function testLogoutReturnsEmptyDataArrayByDefault(): void
 	{
 		$action = new AuthenticationResponseAction();
 
-		$payload = [
-			'token' => 'sample-token',
-			'user' => [
-				'email' => 'navid@example.com',
-				'id' => 1,
-			],
-		];
-
-		$response = $action->login($payload);
-
-		$response_data = $response->getData(true);
-
-		$this->assertSame($payload, $response_data['data']);
-	}
-
-	public function testLoginReturnsGivenJsonResourceData(): void
-	{
-		$action = new AuthenticationResponseAction();
-
-		$payload = [
-			'token' => 'sample-token',
-			'user' => [
-				'email' => 'navid@example.com',
-				'id' => 1,
-			],
-		];
-
-		$resource = JsonResource::make($payload);
-
-		$response = $action->login($resource);
-
-		$response_data = $response->getData(true);
-
-		$this->assertSame($payload, $response_data['data']);
-	}
-
-	public function testLoginReturnsEmptyDataArrayByDefault(): void
-	{
-		$action = new AuthenticationResponseAction();
-
-		$response = $action->login();
+		$response = $action->logout();
 
 		$response_data = $response->getData(true);
 
 		$this->assertSame([], $response_data['data']);
 	}
 
-	public function testLoginReturnsOkStatusCode(): void
+	public function testLogoutReturnsGivenArrayData(): void
 	{
 		$action = new AuthenticationResponseAction();
 
-		$response = $action->login();
+		$payload = [
+			'revoked_tokens_count' => 2,
+		];
+
+		$response = $action->logout($payload);
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame($payload, $response_data['data']);
+	}
+
+	public function testLogoutReturnsGivenJsonResourceData(): void
+	{
+		$action = new AuthenticationResponseAction();
+
+		$payload = [
+			'revoked_tokens_count' => 2,
+		];
+
+		$resource = JsonResource::make($payload);
+
+		$response = $action->logout($resource);
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame($payload, $response_data['data']);
+	}
+
+	public function testLogoutReturnsOkStatusCode(): void
+	{
+		$action = new AuthenticationResponseAction();
+
+		$response = $action->logout();
 
 		$this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
 	}
 
-	public function testLoginReturnsSuccessfulLoginMessage(): void
+	public function testLogoutReturnsSuccessfulLogoutMessage(): void
 	{
 		$action = new AuthenticationResponseAction();
 
-		$response = $action->login();
+		$response = $action->logout();
 
 		$response_data = $response->getData(true);
 
-		$this->assertSame(__('bersiv-api-response::auths.successful.login'), $response_data['message']);
+		$this->assertSame(__('bersiv-api-response::auths.successful.logout'), $response_data['message']);
 	}
 
-	public function testLoginReturnsSuccessResponseShape(): void
+	public function testLogoutReturnsSuccessResponseShape(): void
 	{
 		$action = new AuthenticationResponseAction();
 
-		$response = $action->login();
+		$response = $action->logout();
 
 		$response_data = $response->getData(true);
 
@@ -111,11 +97,11 @@ class AuthenticationResponseActionLoginTest extends TestCase
 		$this->assertArrayHasKey('success', $response_data);
 	}
 
-	public function testLoginReturnsSuccessStatusFlag(): void
+	public function testLogoutReturnsSuccessStatusFlag(): void
 	{
 		$action = new AuthenticationResponseAction();
 
-		$response = $action->login();
+		$response = $action->logout();
 
 		$response_data = $response->getData(true);
 

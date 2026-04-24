@@ -1,6 +1,6 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Tests\Unit\Actions\Authentication;
+namespace NavidBakhtiary\BersivApiResponse\Tests\Unit\Actions\Auth;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;

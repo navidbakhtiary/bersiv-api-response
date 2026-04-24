@@ -1,19 +1,19 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Tests\Unit\Actions\Authentication;
+namespace NavidBakhtiary\BersivApiResponse\Tests\Unit\Actions\Auth;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use NavidBakhtiary\BersivApiResponse\Actions\Auth\AuthenticationResponseAction;
 use NavidBakhtiary\BersivApiResponse\Tests\TestCase;
 
-class AuthenticationResponseActionLogoutTest extends TestCase
+class AuthenticationResponseActionTokenValidTest extends TestCase
 {
-	public function testLogoutReturnsDataKey(): void
+	public function testTokenValidReturnsDataKey(): void
 	{
 		$action = new AuthenticationResponseAction();
 
-		$response = $action->logout();
+		$response = $action->tokenValid();
 
 		$response_data = $response->getData(true);
 
@@ -21,74 +21,65 @@ class AuthenticationResponseActionLogoutTest extends TestCase
 		$this->assertArrayNotHasKey('errors', $response_data);
 	}
 
-	public function testLogoutReturnsEmptyDataArrayByDefault(): void
+	public function testTokenValidReturnsEmptyDataArrayByDefault(): void
 	{
 		$action = new AuthenticationResponseAction();
 
-		$response = $action->logout();
+		$response = $action->tokenValid();
 
 		$response_data = $response->getData(true);
 
 		$this->assertSame([], $response_data['data']);
 	}
 
-	public function testLogoutReturnsGivenArrayData(): void
+	public function testTokenValidReturnsGivenArrayData(): void
 	{
 		$action = new AuthenticationResponseAction();
 
 		$payload = [
-			'revoked_tokens_count' => 2,
+			'user_id' => 1,
+			'valid' => true,
 		];
 
-		$response = $action->logout($payload);
+		$response = $action->tokenValid($payload);
 
 		$response_data = $response->getData(true);
 
 		$this->assertSame($payload, $response_data['data']);
 	}
 
-	public function testLogoutReturnsGivenJsonResourceData(): void
+	public function testTokenValidReturnsGivenJsonResourceData(): void
 	{
 		$action = new AuthenticationResponseAction();
 
 		$payload = [
-			'revoked_tokens_count' => 2,
+			'user_id' => 1,
+			'valid' => true,
 		];
 
 		$resource = JsonResource::make($payload);
 
-		$response = $action->logout($resource);
+		$response = $action->tokenValid($resource);
 
 		$response_data = $response->getData(true);
 
 		$this->assertSame($payload, $response_data['data']);
 	}
 
-	public function testLogoutReturnsOkStatusCode(): void
+	public function testTokenValidReturnsOkStatusCode(): void
 	{
 		$action = new AuthenticationResponseAction();
 
-		$response = $action->logout();
+		$response = $action->tokenValid();
 
 		$this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
 	}
 
-	public function testLogoutReturnsSuccessfulLogoutMessage(): void
+	public function testTokenValidReturnsSuccessResponseShape(): void
 	{
 		$action = new AuthenticationResponseAction();
 
-		$response = $action->logout();
-
-		$response_data = $response->getData(true);
-
-		$this->assertSame(__('bersiv-api-response::auths.successful.logout'), $response_data['message']);
-	}
-
-	public function testLogoutReturnsSuccessResponseShape(): void
-	{
-		$action = new AuthenticationResponseAction();
-
-		$response = $action->logout();
+		$response = $action->tokenValid();
 
 		$response_data = $response->getData(true);
 
@@ -97,14 +88,28 @@ class AuthenticationResponseActionLogoutTest extends TestCase
 		$this->assertArrayHasKey('success', $response_data);
 	}
 
-	public function testLogoutReturnsSuccessStatusFlag(): void
+	public function testTokenValidReturnsSuccessStatusFlag(): void
 	{
 		$action = new AuthenticationResponseAction();
 
-		$response = $action->logout();
+		$response = $action->tokenValid();
 
 		$response_data = $response->getData(true);
 
 		$this->assertTrue($response_data['success']);
+	}
+
+	public function testTokenValidReturnsValidTokenMessage(): void
+	{
+		$action = new AuthenticationResponseAction();
+
+		$response = $action->tokenValid();
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame(
+			__('bersiv-api-response::auths.successful.valid_token'),
+			$response_data['message']
+		);
 	}
 }
