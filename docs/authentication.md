@@ -12,7 +12,7 @@ use NavidBakhtiary\BersivApiResponse\Actions\Auth\AuthenticationResponseAction;
 
 ## Available methods
 
-### `login(JsonResource|array $data = [])`
+### `login(array|JsonResource $data = [])`
 
 Returns a success response for a completed login operation.
 
@@ -70,9 +70,9 @@ Example response:
 }
 ```
 
-### `invalidLoginCredentials(JsonResource|array $errors = [])`
+### `invalidLoginCredentials(array|JsonResource $errors = [])`
 
-Returns an unauthorized response for incorrect login credentials.
+Returns an unauthorized response for invalid login credentials.
 
 ```php
 <?php
@@ -116,7 +116,7 @@ Example response:
 }
 ```
 
-### `logout(JsonResource|array $data = [])`
+### `logout(array|JsonResource $data = [])`
 
 Returns a success response for a completed logout operation.
 
@@ -160,7 +160,7 @@ Example response:
 }
 ```
 
-### `tokenValid(JsonResource|array $data = [])`
+### `tokenValid(array|JsonResource $data = [])`
 
 Returns a success response when the provided token is valid.
 
@@ -206,7 +206,7 @@ Example response:
 }
 ```
 
-### `unauthenticated(JsonResource|array $errors = [])`
+### `unauthenticated(array|JsonResource $errors = [])`
 
 Returns an unauthorized response for unauthenticated access.
 
