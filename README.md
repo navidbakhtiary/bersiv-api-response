@@ -11,8 +11,16 @@ A lightweight Laravel package for standardized JSON response structures.
 - Validation response helpers
 - External API failure response helpers
 - Easy integration into Laravel projects
+- Supports both arrays and JsonResource instances as payloads
+- Built-in namespaced translation support for response messages
 
-## Default Response Structure
+## Installation
+
+```bash
+composer require navidbakhtiary/bersiv-api-response
+```
+
+## Response Structure
 
 ### Success response
 
@@ -46,11 +54,17 @@ A lightweight Laravel package for standardized JSON response structures.
 ```php
 <?php
 
-use NavidBakhtiary\BersivApiResponse\Actions\Authentication\AuthenticationResponseAction;
+use NavidBakhtiary\BersivApiResponse\Actions\Auth\AuthenticationResponseAction;
 
 $action = new AuthenticationResponseAction();
 
-return $action->tokenValid();
+return $action->login([
+    'token' => 'sample-token',
+    'user' => [
+        'id' => 1,
+        'email' => 'navid@example.com',
+    ],
+]);
 ```
 
 ## Running Tests
