@@ -16,7 +16,7 @@
 	"extra": {
 		"laravel": {
 			"providers": [
-				"NavidBakhtiary\\BersivApiResponse\\BersivApiResponseServiceProvider"
+				"NavidBakhtiary\\BersivApiResponse\\Providers\\BersivApiResponseServiceProvider"
 			]
 		}
 	},
