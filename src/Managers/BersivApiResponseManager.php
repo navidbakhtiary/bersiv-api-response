@@ -10,6 +10,7 @@ use NavidBakhtiary\BersivApiResponse\Actions\Data\RangesResponseAction;
 use NavidBakhtiary\BersivApiResponse\Actions\Data\ValuesResponseAction;
 use NavidBakhtiary\BersivApiResponse\Actions\ExternalApi\ExternalApiResponseAction;
 use NavidBakhtiary\BersivApiResponse\Actions\Process\ProcessResponseAction;
+use NavidBakhtiary\BersivApiResponse\Actions\RateLimit\RateLimitResponseAction;
 use NavidBakhtiary\BersivApiResponse\Actions\System\SystemResponseAction;
 use NavidBakhtiary\BersivApiResponse\Actions\Validation\ValidationResponseAction;
 use NavidBakhtiary\BersivApiResponse\Managers\Concerns\HandlesAiResponses;
@@ -17,6 +18,7 @@ use NavidBakhtiary\BersivApiResponse\Managers\Concerns\HandlesAuthenticationResp
 use NavidBakhtiary\BersivApiResponse\Managers\Concerns\HandlesDataResponses;
 use NavidBakhtiary\BersivApiResponse\Managers\Concerns\HandlesExternalApiResponses;
 use NavidBakhtiary\BersivApiResponse\Managers\Concerns\HandlesProcessResponses;
+use NavidBakhtiary\BersivApiResponse\Managers\Concerns\HandlesRateLimitResponses;
 use NavidBakhtiary\BersivApiResponse\Managers\Concerns\HandlesSystemResponses;
 use NavidBakhtiary\BersivApiResponse\Managers\Concerns\HandlesValidationResponses;
 
@@ -35,6 +37,7 @@ class BersivApiResponseManager
 	use HandlesDataResponses;
 	use HandlesExternalApiResponses;
 	use HandlesProcessResponses;
+	use HandlesRateLimitResponses;
 	use HandlesSystemResponses;
 	use HandlesValidationResponses;
 
@@ -47,6 +50,7 @@ class BersivApiResponseManager
 	 * @param ListResponseAction $list_response_action Handles list and collection responses.
 	 * @param ProcessResponseAction $process_response_action Handles background process responses.
 	 * @param RangesResponseAction $ranges_response_action Handles attribute/date range responses.
+	 * @param RateLimitResponseAction $rate_limit_response_action Handles too many requests responses.
 	 * @param SystemResponseAction $system_response_action Handles system level responses.
 	 * @param ValuesResponseAction $values_response_action Handles attribute values responses.
 	 * @param ExternalApiResponseAction $external_api_response_action Handles external API failure responses.
@@ -59,6 +63,7 @@ class BersivApiResponseManager
 		protected ListResponseAction $list_response_action,
 		protected ProcessResponseAction $process_response_action,
 		protected RangesResponseAction $ranges_response_action,
+		protected RateLimitResponseAction $rate_limit_response_action,
 		protected SystemResponseAction $system_response_action,
 		protected ValuesResponseAction $values_response_action,
 		protected ExternalApiResponseAction $external_api_response_action,
