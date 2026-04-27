@@ -11,6 +11,22 @@ use Illuminate\Http\Resources\Json\JsonResource;
 trait HandlesProcessResponses
 {
 	/**
+	 * Return a response for a finished process.
+	 *
+	 * This response means the requested process has completed successfully
+	 * and the result is available.
+	 *
+	 * @param string $process_name The display name of the requested process.
+	 * @param array|JsonResource $data Optional process result payload.
+	 *
+	 * @return JsonResponse The formatted JSON response.
+	 */
+	public function processFinished(string $process_name, array|JsonResource $data = []): JsonResponse
+	{
+		return $this->process_response_action->finished($process_name, $data);
+	}
+
+	/**
 	 * Return a response for an accepted background process.
 	 *
 	 * This response means the request was accepted and processing has started,

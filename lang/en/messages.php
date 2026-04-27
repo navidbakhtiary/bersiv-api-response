@@ -28,6 +28,7 @@ return [
 		'filtered_models_list_retrieved' => 'Filtered :model list retrieved for :attributes.',
 		'model_found' => ':model found.',
 		'models_list_retrieved' => ':model list retrieved.',
+		'process_finished' => 'The :process_name process finished successfully.',
 		'processing_accepted' => 'The requested :process_name was accepted and is being processed. You will be notified when the result is ready.',
 		'searched_query_list_retrieved' => 'Search results retrieved for :entity.',
 		'values_list_retrieved' => ':attribute values retrieved for :model.',

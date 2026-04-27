@@ -6,6 +6,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use NavidBakhtiary\BersivApiResponse\Responses\Failures\UnprocessableEntityResponse;
 use NavidBakhtiary\BersivApiResponse\Responses\Successes\AcceptedResponse;
+use NavidBakhtiary\BersivApiResponse\Responses\Successes\OkResponse;
 
 /**
  * Handles process-related responses.
@@ -30,6 +31,22 @@ class ProcessResponseAction
 	public function accepted(string $process_name, array|JsonResource $data = []): JsonResponse
 	{
 		return AcceptedResponse::processingAccepted($process_name, $data);
+	}
+
+	/**
+	 * Return a response for a finished process.
+	 *
+	 * This response means the requested process has completed successfully
+	 * and the result is available.
+	 *
+	 * @param string $process_name The display name of the requested process.
+	 * @param array|JsonResource $data Optional process result payload.
+	 *
+	 * @return JsonResponse The formatted JSON response.
+	 */
+	public function finished(string $process_name, array|JsonResource $data = []): JsonResponse
+	{
+		return OkResponse::processFinished($process_name, $data);
 	}
 
 	/**
