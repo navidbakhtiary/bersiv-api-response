@@ -9,19 +9,53 @@ use NavidBakhtiary\BersivApiResponse\Tests\TestCase;
 
 class ValuesResponseActionTest extends TestCase
 {
-	public function testHandleReturnsDataKey(): void
+	public function testHandleReturnsEmptySuccessContractWhenValuesAreEmpty(): void
 	{
 		$action = new ValuesResponseAction();
 
-		$response = $action->handle('user', 'status', ['active', 'inactive']);
+		$response = $action->handle('user', 'status', []);
 
 		$response_data = $response->getData(true);
 
+		$this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
+		$this->assertTrue($response_data['success']);
+		$this->assertSame(
+			__('bersiv-api-response::messages.successful.empty_values_list', [
+				'model' => 'user',
+				'attribute' => 'status',
+			]),
+			$response_data['message']
+		);
+		$this->assertSame([], $response_data['data']);
+		$this->assertArrayHasKey('data', $response_data);
+		$this->assertArrayHasKey('message', $response_data);
+		$this->assertArrayHasKey('success', $response_data);
+		$this->assertArrayNotHasKey('errors', $response_data);
+	}
+
+	public function testHandleReturnsEmptySuccessContractWhenValuesAreOmitted(): void
+	{
+		$action = new ValuesResponseAction();
+
+		$response = $action->handle('user', 'status');
+
+		$response_data = $response->getData(true);
+
+		$this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
+		$this->assertTrue($response_data['success']);
+		$this->assertSame(
+			__('bersiv-api-response::messages.successful.empty_values_list', [
+				'model' => 'user',
+				'attribute' => 'status',
+			]),
+			$response_data['message']
+		);
+		$this->assertSame([], $response_data['data']);
 		$this->assertArrayHasKey('data', $response_data);
 		$this->assertArrayNotHasKey('errors', $response_data);
 	}
 
-	public function testHandleReturnsGivenArrayData(): void
+	public function testHandleReturnsSuccessContractWhenValuesExist(): void
 	{
 		$action = new ValuesResponseAction();
 
@@ -31,10 +65,21 @@ class ValuesResponseActionTest extends TestCase
 
 		$response_data = $response->getData(true);
 
+		$this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
+		$this->assertTrue($response_data['success']);
+		$this->assertSame(
+			__('bersiv-api-response::messages.successful.values_list_retrieved', [
+				'model' => 'user',
+				'attribute' => 'status',
+			]),
+			$response_data['message']
+		);
 		$this->assertSame($values, $response_data['data']);
+		$this->assertArrayHasKey('data', $response_data);
+		$this->assertArrayNotHasKey('errors', $response_data);
 	}
 
-	public function testHandleReturnsGivenJsonResourceData(): void
+	public function testHandleReturnsSuccessContractWithJsonResourceData(): void
 	{
 		$action = new ValuesResponseAction();
 
@@ -46,45 +91,8 @@ class ValuesResponseActionTest extends TestCase
 
 		$response_data = $response->getData(true);
 
-		$this->assertSame($values, $response_data['data']);
-	}
-
-	public function testHandleReturnsEmptyDataArrayByDefault(): void
-	{
-		$action = new ValuesResponseAction();
-
-		$response = $action->handle('user', 'status');
-
-		$response_data = $response->getData(true);
-
-		$this->assertSame([], $response_data['data']);
-	}
-
-	public function testHandleReturnsEmptyMessageWhenValuesAreOmitted(): void
-	{
-		$action = new ValuesResponseAction();
-
-		$response = $action->handle('user', 'status');
-
-		$response_data = $response->getData(true);
-
-		$this->assertSame(
-			__('bersiv-api-response::messages.successful.empty_values_list', [
-				'model' => 'user',
-				'attribute' => 'status',
-			]),
-			$response_data['message']
-		);
-	}
-
-	public function testHandleReturnsRetrievedMessageWhenValuesExist(): void
-	{
-		$action = new ValuesResponseAction();
-
-		$response = $action->handle('user', 'status', ['active', 'inactive']);
-
-		$response_data = $response->getData(true);
-
+		$this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
+		$this->assertTrue($response_data['success']);
 		$this->assertSame(
 			__('bersiv-api-response::messages.successful.values_list_retrieved', [
 				'model' => 'user',
@@ -92,55 +100,8 @@ class ValuesResponseActionTest extends TestCase
 			]),
 			$response_data['message']
 		);
-	}
-
-	public function testHandleReturnsEmptyMessageWhenValuesDoNotExist(): void
-	{
-		$action = new ValuesResponseAction();
-
-		$response = $action->handle('user', 'status', []);
-
-		$response_data = $response->getData(true);
-
-		$this->assertSame(
-			__('bersiv-api-response::messages.successful.empty_values_list', [
-				'model' => 'user',
-				'attribute' => 'status',
-			]),
-			$response_data['message']
-		);
-	}
-
-	public function testHandleReturnsOkStatusCode(): void
-	{
-		$action = new ValuesResponseAction();
-
-		$response = $action->handle('user', 'status', []);
-
-		$this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
-	}
-
-	public function testHandleReturnsSuccessResponseShape(): void
-	{
-		$action = new ValuesResponseAction();
-
-		$response = $action->handle('user', 'status', []);
-
-		$response_data = $response->getData(true);
-
+		$this->assertSame($values, $response_data['data']);
 		$this->assertArrayHasKey('data', $response_data);
-		$this->assertArrayHasKey('message', $response_data);
-		$this->assertArrayHasKey('success', $response_data);
-	}
-
-	public function testHandleReturnsSuccessStatusFlag(): void
-	{
-		$action = new ValuesResponseAction();
-
-		$response = $action->handle('user', 'status', []);
-
-		$response_data = $response->getData(true);
-
-		$this->assertTrue($response_data['success']);
+		$this->assertArrayNotHasKey('errors', $response_data);
 	}
 }
