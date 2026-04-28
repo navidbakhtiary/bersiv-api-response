@@ -28,7 +28,7 @@ trait HandlesAuthenticationResponses
 	 */
 	public function invalidToken(array|JsonResource $errors = []): JsonResponse
 	{
-		return $this->authentication_response_action->tokenInvalid($errors);
+		return $this->authentication_response_action->invalidToken($errors);
 	}
 
 	/**

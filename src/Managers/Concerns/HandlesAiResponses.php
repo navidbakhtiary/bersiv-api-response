@@ -11,7 +11,10 @@ use Illuminate\Http\Resources\Json\JsonResource;
 trait HandlesAiResponses
 {
 	/**
-	 * Return a response when an AI answer is available.
+	 * Return a response for an AI answer.
+	 *
+	 * Returns a success response when answer data is provided,
+	 * otherwise returns a failure response when no answer is available.
 	 *
 	 * @param array|JsonResource $data The AI answer payload.
 	 *

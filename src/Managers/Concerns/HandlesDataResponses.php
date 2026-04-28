@@ -15,7 +15,7 @@ trait HandlesDataResponses
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function attributeRanges(string $model_name, array|JsonResource $ranges): JsonResponse
+	public function attributeRanges(string $model_name, array|JsonResource $ranges = []): JsonResponse
 	{
 		return $this->ranges_response_action->attributeRanges($model_name, $ranges);
 	}
@@ -36,12 +36,15 @@ trait HandlesDataResponses
 	/**
 	 * Return a response for a single entity detail.
 	 *
+	 * Returns a success response when the resource exists,
+	 * otherwise returns a not found response.
+	 *
 	 * @param string $model_name The entity/model display name used in messages.
-	 * @param array|JsonResource|null $model_resource The single resource payload.
+	 * @param array|JsonResource $model_resource The single resource payload.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function detail(string $model_name, array|JsonResource|null $model_resource = null): JsonResponse
+	public function detail(string $model_name, array|JsonResource $model_resource = []): JsonResponse
 	{
 		return $this->detail_response_action->handle($model_name, $model_resource);
 	}
@@ -54,7 +57,7 @@ trait HandlesDataResponses
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function dateRange(string $model_name, array|JsonResource $date_range_resource): JsonResponse
+	public function dateRange(string $model_name, array|JsonResource $date_range_resource = []): JsonResponse
 	{
 		return $this->ranges_response_action->dateRange($model_name, $date_range_resource);
 	}
@@ -74,19 +77,6 @@ trait HandlesDataResponses
 	}
 
 	/**
-	 * Return a response for invalid attributes.
-	 *
-	 * @param array $attributes The invalid attribute names.
-	 * @param array|JsonResource $errors Optional structured error details.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public function invalidAttributes(array $attributes, array|JsonResource $errors = []): JsonResponse
-	{
-		return $this->validation_response_action->invalidAttributes($attributes, $errors);
-	}
-
-	/**
 	 * Return a response for a collection of entities.
 	 *
 	 * @param string $model_name The entity/model display name used in messages.
@@ -94,7 +84,7 @@ trait HandlesDataResponses
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function list(string $model_name, array|JsonResource $data_resource): JsonResponse
+	public function list(string $model_name, array|JsonResource $data_resource = []): JsonResponse
 	{
 		return $this->list_response_action->handle($model_name, $data_resource);
 	}
@@ -107,7 +97,7 @@ trait HandlesDataResponses
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function searchResults(string $query_entity, array|JsonResource $data_resource): JsonResponse
+	public function searchResults(string $query_entity, array|JsonResource $data_resource = []): JsonResponse
 	{
 		return $this->list_response_action->searchResults($query_entity, $data_resource);
 	}
