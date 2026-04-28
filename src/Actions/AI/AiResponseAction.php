@@ -31,7 +31,12 @@ class AiResponseAction
 	{
 		if (Utilities::isResourceEmpty($data))
 		{
-			return NotFoundResponse::noAIAnswer($errors);
+			return (
+				new NotFoundResponse(
+					__('bersiv-api-response::messages.failures.no_ai_answer'),
+					$errors
+				)
+			)->send();
 		}
 
 		return (

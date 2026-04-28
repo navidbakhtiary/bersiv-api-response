@@ -24,15 +24,21 @@ class DetailResponseAction
 	 * Return a detail response for a single entity.
 	 *
 	 * @param string $model_name The entity/model display name used in messages.
-	 * @param array|JsonResource|null $model_resource The resolved resource data or null.
+	 * @param array|JsonResource $model_resource The resolved resource data or null.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function handle(string $model_name, array|JsonResource|null $model_resource = null): JsonResponse
+	public function handle(string $model_name, array|JsonResource $model_resource = []): JsonResponse
 	{
 		if (Utilities::isResourceEmpty($model_resource))
 		{
-			return NotFoundResponse::resourceNotFound($model_name);
+			return (
+				new NotFoundResponse(
+					__('bersiv-api-response::messages.failures.entity_not_found', [
+						'entity' => $model_name,
+					]),
+				)
+			)->send();
 		}
 
 		return (

@@ -28,7 +28,12 @@ class AuthenticationResponseAction
 	 */
 	public function invalidLoginCredentials(array|JsonResource $errors = []): JsonResponse
 	{
-		return UnauthorizedResponse::invalidLoginCredentials($errors);
+		return (
+			new UnauthorizedResponse(
+				__('bersiv-api-response::auths.failures.incorrect_credentials'),
+				$errors
+			)
+		)->send();
 	}
 
 	/**
@@ -40,7 +45,12 @@ class AuthenticationResponseAction
 	 */
 	public function invalidToken(array|JsonResource $errors = []): JsonResponse
 	{
-		return UnauthorizedResponse::invalidToken($errors);
+		return (
+			new UnauthorizedResponse(
+				__('bersiv-api-response::auths.failures.invalid_token'),
+				$errors
+			)
+		)->send();
 	}
 
 	/**
@@ -103,6 +113,11 @@ class AuthenticationResponseAction
 	 */
 	public function unauthenticated(array|JsonResource $errors = []): JsonResponse
 	{
-		return UnauthorizedResponse::unauthenticated($errors);
+		return (
+			new UnauthorizedResponse(
+				__('bersiv-api-response::auths.failures.unauthenticated'),
+				$errors
+			)
+		)->send();
 	}
 }

@@ -23,25 +23,4 @@ class AcceptedResponse extends SuccessResponse
 	{
 		parent::__construct(JsonResponse::HTTP_ACCEPTED, $message, $data);
 	}
-
-	/**
-	 * Return a response for an accepted background process.
-	 *
-	 * This response means the request was accepted and processing has started,
-	 * but the final result is not ready yet.
-	 *
-	 * @param string $process_name The display name of the requested process.
-	 * @param array|JsonResource $data Optional process payload, such as job_id, status, or tracking data.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public static function processingAccepted(string $process_name, array|JsonResource $data = []): JsonResponse
-	{
-		return (
-			new self(
-				__('bersiv-api-response::messages.successful.processing_accepted', ['process_name' => $process_name]),
-				$data
-			)
-		)->send();
-	}
 }

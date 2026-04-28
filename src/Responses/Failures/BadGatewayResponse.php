@@ -23,22 +23,4 @@ class BadGatewayResponse extends FailureResponse
 	{
 		parent::__construct(JsonResponse::HTTP_BAD_GATEWAY, $message, $errors);
 	}
-
-	/**
-	 * Return a response when the external API rejects the request.
-	 *
-	 * @param string|null $message Optional custom message.
-	 * @param array|JsonResource $errors Optional structured error details.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public static function externalApiRejected(?string $message = null, array|JsonResource $errors = []): JsonResponse
-	{
-		return (
-			new self(
-				$message ?? __('bersiv-api-response::messages.failures.external_api_rejected'),
-				$errors
-			)
-		)->send();
-	}
 }

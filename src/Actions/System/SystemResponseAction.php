@@ -23,6 +23,11 @@ class SystemResponseAction
 	 */
 	public function serverError(array|JsonResource $errors = []): JsonResponse
 	{
-		return InternalServerErrorResponse::serverError($errors);
+		return (
+			new InternalServerErrorResponse(
+				__('bersiv-api-response::messages.failures.server_error'),
+				$errors
+			)
+		)->send();
 	}
 }

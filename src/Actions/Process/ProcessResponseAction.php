@@ -30,7 +30,14 @@ class ProcessResponseAction
 	 */
 	public function accepted(string $process_name, array|JsonResource $data = []): JsonResponse
 	{
-		return AcceptedResponse::processingAccepted($process_name, $data);
+		return (
+			new AcceptedResponse(
+				__('bersiv-api-response::messages.successful.processing_accepted', [
+					'name' => $process_name,
+				]),
+				$data
+			)
+		)->send();
 	}
 
 	/**
@@ -46,7 +53,14 @@ class ProcessResponseAction
 	 */
 	public function finished(string $process_name, array|JsonResource $data = []): JsonResponse
 	{
-		return OkResponse::processFinished($process_name, $data);
+		return (
+			new OkResponse(
+				__('bersiv-api-response::messages.successful.process_finished', [
+					'name' => $process_name,
+				]),
+				$data
+			)
+		)->send();
 	}
 
 	/**
@@ -59,6 +73,13 @@ class ProcessResponseAction
 	 */
 	public function rejected(string $process_name, array|JsonResource $errors = []): JsonResponse
 	{
-		return UnprocessableEntityResponse::processRejected($process_name, $errors);
+		return (
+			new UnprocessableEntityResponse(
+				__('bersiv-api-response::messages.failures.process_rejected', [
+					'name' => $process_name,
+				]),
+				$errors
+			)
+		)->send();
 	}
 }

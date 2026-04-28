@@ -23,21 +23,4 @@ class ServiceUnavailableResponse extends FailureResponse
 	{
 		parent::__construct(JsonResponse::HTTP_SERVICE_UNAVAILABLE, $message, $errors);
 	}
-
-	/**
-	 * Return a response for an unavailable external API.
-	 *
-	 * @param array|JsonResource $errors Optional structured error details.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public static function externalApiUnavailable(array|JsonResource $errors = []): JsonResponse
-	{
-		return (
-			new self(
-				__('bersiv-api-response::messages.failures.unavailable_external_api'),
-				$errors
-			)
-		)->send();
-	}
 }

@@ -24,27 +24,4 @@ class OkResponse extends SuccessResponse
 	{
 		parent::__construct(JsonResponse::HTTP_OK, $message, $data);
 	}
-
-	/**
-	 * Return a response for a finished process.
-	 *
-	 * This response means the requested process has completed successfully
-	 * and the result is available.
-	 *
-	 * @param string $process_name The display name of the requested process.
-	 * @param array|JsonResource $data Optional process result payload.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public static function processFinished(string $process_name, array|JsonResource $data = []): JsonResponse
-	{
-		return (
-			new self(
-				__('bersiv-api-response::messages.successful.process_finished', [
-					'process_name' => $process_name,
-				]),
-				$data
-			)
-		)->send();
-	}
 }

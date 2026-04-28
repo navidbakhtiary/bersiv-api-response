@@ -23,6 +23,11 @@ class RateLimitResponseAction
 	 */
 	public function tooManyRequests(array|JsonResource $errors = []): JsonResponse
 	{
-		return TooManyRequestsResponse::tooManyRequests($errors);
+		return (
+			new TooManyRequestsResponse(
+				__('bersiv-api-response::messages.failures.server_restriction'),
+				$errors
+			)
+		)->send();
 	}
 }

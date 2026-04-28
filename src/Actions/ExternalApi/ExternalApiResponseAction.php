@@ -35,7 +35,12 @@ class ExternalApiResponseAction
 	 */
 	public function rejected(?string $message = null, array|JsonResource $errors = []): JsonResponse
 	{
-		return BadGatewayResponse::externalApiRejected($message, $errors);
+		return (
+			new BadGatewayResponse(
+				$message ?? __('bersiv-api-response::messages.failures.external_api_rejected'),
+				$errors
+			)
+		)->send();
 	}
 
 	/**
@@ -53,6 +58,11 @@ class ExternalApiResponseAction
 	 */
 	public function unavailable(array|JsonResource $errors = []): JsonResponse
 	{
-		return ServiceUnavailableResponse::externalApiUnavailable($errors);
+		return (
+			new ServiceUnavailableResponse(
+				__('bersiv-api-response::messages.failures.unavailable_external_api'),
+				$errors
+			)
+		)->send();
 	}
 }

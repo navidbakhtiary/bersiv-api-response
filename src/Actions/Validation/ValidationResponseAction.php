@@ -4,6 +4,7 @@ namespace NavidBakhtiary\BersivApiResponse\Actions\Validation;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
+use NavidBakhtiary\BersivApiResponse\Helpers\Utilities;
 use NavidBakhtiary\BersivApiResponse\Responses\Failures\ForbiddenResponse;
 use NavidBakhtiary\BersivApiResponse\Responses\Failures\UnprocessableEntityResponse;
 
@@ -22,21 +23,6 @@ use NavidBakhtiary\BersivApiResponse\Responses\Failures\UnprocessableEntityRespo
 class ValidationResponseAction
 {
 	/**
-	 * Return a response for invalid captcha verification.
-	 *
-	 * This is useful when the request is blocked because captcha validation
-	 * did not pass.
-	 *
-	 * @param array|JsonResource $errors Optional structured error details.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public function invalidCaptcha(array|JsonResource $errors = []): JsonResponse
-	{
-		return ForbiddenResponse::invalidCaptcha($errors);
-	}
-
-	/**
 	 * Return a response for invalid attributes.
 	 *
 	 * This is useful when one or more requested attributes are not allowed
@@ -49,9 +35,39 @@ class ValidationResponseAction
 	 */
 	public function invalidAttributes(array $attributes, array|JsonResource $errors = []): JsonResponse
 	{
-		return UnprocessableEntityResponse::invalidAttributes($attributes, $errors);
+		return (
+			new UnprocessableEntityResponse(
+				__(
+					'bersiv-api-response::messages.failures.invalid_attributes',
+					[
+						'attributes' => Utilities::createStringFromArray($attributes),
+					]
+				),
+				$errors
+			)
+		)->send();
 	}
 
+	/**
+	 * Return a response for invalid captcha verification.
+	 *
+	 * This is useful when the request is blocked because captcha validation
+	 * did not pass.
+	 *
+	 * @param array|JsonResource $errors Optional structured error details.
+	 *
+	 * @return JsonResponse The formatted JSON response.
+	 */
+	public function invalidCaptcha(array|JsonResource $errors = []): JsonResponse
+	{
+		return (
+			new ForbiddenResponse(
+				__('bersiv-api-response::auths.failures.invalid_captcha'),
+				$errors
+			)
+		)->send();
+	}
+	
 	/**
 	 * Return a response for invalid request inputs.
 	 *
@@ -65,6 +81,11 @@ class ValidationResponseAction
 	 */
 	public function invalidInputs(?string $message = null, array|JsonResource $errors = []): JsonResponse
 	{
-		return UnprocessableEntityResponse::invalidInputs($message, $errors);
+		return (
+			new UnprocessableEntityResponse(
+				$message ?? __('bersiv-api-response::messages.failures.invalid_inputs'),
+				$errors
+			)
+		)->send();
 	}
 }

@@ -20,21 +20,4 @@ class TooManyRequestsResponse extends FailureResponse
 	{
 		parent::__construct(JsonResponse::HTTP_TOO_MANY_REQUESTS, $message, $errors);
 	}
-
-	/**
-	 * Return a default too many requests response.
-	 *
-	 * @param array|JsonResource $errors Optional structured error details.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public static function tooManyRequests(array|JsonResource $errors = []): JsonResponse
-	{
-		return (
-			new self(
-				__('bersiv-api-response::messages.failures.server_restriction'),
-				$errors
-			)
-		)->send();
-	}
 }

@@ -20,39 +20,4 @@ class NotFoundResponse extends FailureResponse
 	{
 		parent::__construct(JsonResponse::HTTP_NOT_FOUND, $message, $errors);
 	}
-
-	/**
-	 * Return a response when no AI answer is available.
-	 *
-	 * @param array|JsonResource $errors Optional structured error details.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public static function noAiAnswer(array|JsonResource $errors = []): JsonResponse
-	{
-		return ( 
-			new self(
-				__('bersiv-api-response::messages.failures.no_ai_answer'),
-				$errors
-			)
-		)->send();
-	}
-
-	/**
-	 * Return a default response for a missing resource.
-	 *
-	 * @param string $entity_name The missing resource name.
-	 * @param array|JsonResource $errors Optional structured error details.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public static function resourceNotFound(string $entity_name, array|JsonResource $errors = []): JsonResponse
-	{
-		return (
-			new self(
-				__('bersiv-api-response::messages.failures.entity_not_found', ['entity' => $entity_name]),
-				$errors
-			)
-		)->send();
-	}
 }

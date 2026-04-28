@@ -23,21 +23,4 @@ class ForbiddenResponse extends FailureResponse
 	{
 		parent::__construct(JsonResponse::HTTP_FORBIDDEN, $message, $errors);
 	}
-
-	/**
-	 * Return a response for invalid captcha verification.
-	 *
-	 * @param array|JsonResource $errors Optional structured error details.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public static function invalidCaptcha(array|JsonResource $errors = []): JsonResponse
-	{
-		return (
-			new self(
-				__('bersiv-api-response::auths.failures.invalid_captcha'),
-				$errors
-			)
-		)->send();
-	}
 }

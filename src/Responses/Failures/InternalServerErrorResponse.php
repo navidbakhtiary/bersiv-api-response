@@ -20,21 +20,4 @@ class InternalServerErrorResponse extends FailureResponse
 	{
 		parent::__construct(JsonResponse::HTTP_INTERNAL_SERVER_ERROR, $message, $errors);
 	}
-
-	/**
-	 * Return a default internal server error response.
-	 *
-	 * @param array|JsonResource $errors Optional structured error details.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public static function serverError(array|JsonResource $errors = []): JsonResponse
-	{
-		return (
-			new self(
-				__('bersiv-api-response::messages.failures.server_error'),
-				$errors
-			)
-		)->send();
-	}
 }
