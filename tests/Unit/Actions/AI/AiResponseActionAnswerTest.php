@@ -4,7 +4,7 @@ namespace NavidBakhtiary\BersivApiResponse\Tests\Unit\Actions\Ai;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
-use NavidBakhtiary\BersivApiResponse\Actions\Ai\AiResponseAction;
+use NavidBakhtiary\BersivApiResponse\Actions\AI\AiResponseAction;
 use NavidBakhtiary\BersivApiResponse\Responses\Failures\NotFoundResponse;
 use NavidBakhtiary\BersivApiResponse\Responses\Successes\OkResponse;
 use NavidBakhtiary\BersivApiResponse\Tests\TestCase;
