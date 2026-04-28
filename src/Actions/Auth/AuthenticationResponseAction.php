@@ -32,6 +32,18 @@ class AuthenticationResponseAction
 	}
 
 	/**
+	 * Return an unauthorized response when the provided token is invalid.
+	 *
+	 * @param array|JsonResource $errors Optional structured error details.
+	 *
+	 * @return JsonResponse The formatted JSON response.
+	 */
+	public function invalidToken(array|JsonResource $errors = []): JsonResponse
+	{
+		return UnauthorizedResponse::invalidToken($errors);
+	}
+
+	/**
 	 * Return a success response for a completed login operation.
 	 *
 	 * @param array|JsonResource $data The login response payload.

@@ -10,6 +10,7 @@ return [
 		'process_rejected' => 'The :process_name process could not be accepted.',
 		'server_error' => 'Server error.',
 		'server_restriction' => 'Too many requests.',
+		'invalid_token' => 'The token is invalid.',
 		'unavailable_external_api' => 'External API is unavailable.',
 	],
 	'successful' => [
