@@ -8,18 +8,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 trait HandlesAuthenticationResponses
 {
 	/**
-	 * Return a response for invalid captcha verification.
-	 *
-	 * @param array|JsonResource $errors Optional structured error details.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public function invalidCaptcha(array|JsonResource $errors = []): JsonResponse
-	{
-		return $this->validation_response_action->invalidCaptcha($errors);
-	}
-
-	/**
 	 * Return a response for invalid login credentials.
 	 *
 	 * @param array|JsonResource $errors Optional structured error details.
