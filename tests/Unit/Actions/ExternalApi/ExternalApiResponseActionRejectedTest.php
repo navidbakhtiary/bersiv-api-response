@@ -30,24 +30,6 @@ class ExternalApiResponseActionRejectedTest extends TestCase
 		$this->assertArrayNotHasKey('data', $response_data);
 	}
 
-	public function testRejectedReturnsCustomFailureMessage(): void
-	{
-		$action = new ExternalApiResponseAction();
-
-		$message = 'External API rejected the payload.';
-
-		$response = $action->rejected($message);
-
-		$response_data = $response->getData(true);
-
-		$this->assertSame(JsonResponse::HTTP_BAD_GATEWAY, $response->getStatusCode());
-		$this->assertFalse($response_data['success']);
-		$this->assertSame($message, $response_data['message']);
-		$this->assertSame([], $response_data['errors']);
-		$this->assertArrayHasKey('errors', $response_data);
-		$this->assertArrayNotHasKey('data', $response_data);
-	}
-
 	public function testRejectedReturnsGivenArrayErrors(): void
 	{
 		$action = new ExternalApiResponseAction();
@@ -56,7 +38,7 @@ class ExternalApiResponseActionRejectedTest extends TestCase
 			'upstream' => ['Validation failed in external API.'],
 		];
 
-		$response = $action->rejected(null, $errors);
+		$response = $action->rejected($errors);
 
 		$response_data = $response->getData(true);
 
@@ -81,7 +63,7 @@ class ExternalApiResponseActionRejectedTest extends TestCase
 
 		$resource = JsonResource::make($errors);
 
-		$response = $action->rejected(null, $resource);
+		$response = $action->rejected($resource);
 
 		$response_data = $response->getData(true);
 

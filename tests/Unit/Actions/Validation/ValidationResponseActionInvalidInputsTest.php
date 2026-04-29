@@ -30,24 +30,6 @@ class ValidationResponseActionInvalidInputsTest extends TestCase
 		$this->assertArrayNotHasKey('data', $response_data);
 	}
 
-	public function testInvalidInputsReturnsCustomFailureMessage(): void
-	{
-		$action = new ValidationResponseAction();
-
-		$message = 'The given data was invalid.';
-
-		$response = $action->invalidInputs($message);
-
-		$response_data = $response->getData(true);
-
-		$this->assertSame(JsonResponse::HTTP_UNPROCESSABLE_ENTITY, $response->getStatusCode());
-		$this->assertFalse($response_data['success']);
-		$this->assertSame($message, $response_data['message']);
-		$this->assertSame([], $response_data['errors']);
-		$this->assertArrayHasKey('errors', $response_data);
-		$this->assertArrayNotHasKey('data', $response_data);
-	}
-
 	public function testInvalidInputsReturnsGivenArrayErrors(): void
 	{
 		$action = new ValidationResponseAction();
@@ -56,7 +38,7 @@ class ValidationResponseActionInvalidInputsTest extends TestCase
 			'email' => ['The email field is required.'],
 		];
 
-		$response = $action->invalidInputs(null, $errors);
+		$response = $action->invalidInputs($errors);
 
 		$response_data = $response->getData(true);
 
@@ -81,7 +63,7 @@ class ValidationResponseActionInvalidInputsTest extends TestCase
 
 		$resource = JsonResource::make($errors);
 
-		$response = $action->invalidInputs(null, $resource);
+		$response = $action->invalidInputs($resource);
 
 		$response_data = $response->getData(true);
 
