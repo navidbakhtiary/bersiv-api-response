@@ -74,12 +74,11 @@ class ValidationResponseAction
 	 * This is useful for general validation failures, malformed input,
 	 * or request data that does not meet application rules.
 	 *
-	 * @param string|null $message Optional custom validation message.
 	 * @param array|JsonResource $errors Optional structured validation errors.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function invalidInputs(?string $message = null, array|JsonResource $errors = []): JsonResponse
+	public function invalidInputs(array|JsonResource $errors = []): JsonResponse
 	{
 		return (
 			new UnprocessableEntityResponse(

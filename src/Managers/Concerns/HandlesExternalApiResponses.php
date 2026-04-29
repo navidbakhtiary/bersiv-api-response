@@ -10,14 +10,13 @@ trait HandlesExternalApiResponses
 	/**
 	 * Return a response when the external API rejects the request.
 	 *
-	 * @param string|null $message Optional custom message.
 	 * @param array|JsonResource $errors Optional structured error details.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function externalApiRejected(?string $message = null, array|JsonResource $errors = []): JsonResponse
+	public function externalApiRejected(array|JsonResource $errors = []): JsonResponse
 	{
-		return $this->external_api_response_action->rejected($message, $errors);
+		return $this->external_api_response_action->rejected($errors);
 	}
 
 	/**

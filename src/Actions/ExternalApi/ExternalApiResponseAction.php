@@ -28,12 +28,11 @@ class ExternalApiResponseAction
 	 * - upstream business-rule rejection
 	 * - malformed request accepted by this app but rejected upstream
 	 *
-	 * @param string|null $message Optional custom message.
 	 * @param array|JsonResource $errors Optional structured error details.
 	 *
 	 * @return JsonResponse The formatted JSON response.
 	 */
-	public function rejected(?string $message = null, array|JsonResource $errors = []): JsonResponse
+	public function rejected(array|JsonResource $errors = []): JsonResponse
 	{
 		return (
 			new BadGatewayResponse(
