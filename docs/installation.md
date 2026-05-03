@@ -3,7 +3,8 @@
 ## Requirements
 
 - PHP 8.2 or higher
-- A compatible Laravel application
+- Laravel application compatible with the package version
+- Composer
 
 ## Install the Package
 
@@ -18,28 +19,46 @@ The package service provider is registered automatically through Laravel package
 Registered provider:
 
 ```php
-NavidBakhtiary\BersivApiResponse\Providers\BersivApiResponseServiceProvider::class
+<?php
+
+NavidBakhtiary\BersivApiResponse\Providers\BersivApiResponseServiceProvider::class;
+```
+
+Normally, you do not need to add this provider manually.
+
+## Facade
+
+Use the facade in controllers, services, exception handlers, or route closures.
+
+```php
+<?php
+
+use NavidBakhtiary\BersivApiResponse\Facades\BersivApiResponse;
+
+return BersivApiResponse::list('User', $users);
 ```
 
 ## Translations
 
-The package loads its translation files through the `bersiv-api-response` namespace.
+The package loads translation files through the `bersiv-api-response` namespace.
 
 Example:
 
 ```php
+<?php
+
 __('bersiv-api-response::messages.successful.model_found', ['model' => 'user']);
 ```
 
-If you want to customize the package translations in your Laravel application, publish them with:
+To customize package translations in your application, publish them with:
 
-```php
+```bash
 php artisan vendor:publish --tag=bersiv-api-response-translations
 ```
 
 The translation files will be copied to:
 
-```
+```text
 lang/vendor/bersiv-api-response
 ```
 
@@ -48,14 +67,16 @@ lang/vendor/bersiv-api-response
 Make sure your package `composer.json` uses the correct PSR-4 namespaces:
 
 ```json
-"autoload": {
-    "psr-4": {
-        "NavidBakhtiary\\BersivApiResponse\\": "src/"
-    }
-},
-"autoload-dev": {
-    "psr-4": {
-        "NavidBakhtiary\\BersivApiResponse\\Tests\\": "tests/"
+{
+    "autoload": {
+        "psr-4": {
+            "NavidBakhtiary\\BersivApiResponse\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NavidBakhtiary\\BersivApiResponse\\Tests\\": "tests/"
+        }
     }
 }
 ```
@@ -66,8 +87,32 @@ After changing namespaces or moving files, refresh Composer autoloading:
 composer dump-autoload
 ```
 
+## Local Package Development
+
+When developing or testing the package inside another Laravel project, you can use a path repository.
+
+Example in the Laravel application's `composer.json`:
+
+```json
+{
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../packages/bersiv-api-response",
+            "options": {
+                "symlink": true
+            }
+        }
+    ]
+}
+```
+
+Then require the package:
+
+```bash
+composer require navidbakhtiary/bersiv-api-response:@dev
+```
+
 ## Notes
 
-This package is a library package.
-
-For library packages, it is generally better not to commit `composer.lock` to the package repository.
+This package is a reusable library package. For public library packages, it is generally better not to commit `composer.lock` to the package repository.

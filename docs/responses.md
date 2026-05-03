@@ -1,12 +1,12 @@
 # Response Types
 
-This package provides structured response classes and action classes for common API scenarios.
+Bersiv API Response provides structured response classes and semantic facade functions for common API scenarios.
+
+The main goal is to make API responses predictable and readable.
 
 ## Success Responses
 
-Success responses use the `success` key and place payloads inside `data`.
-
-Example:
+Success responses use the `success` key and place payloads under `data`.
 
 ```json
 {
@@ -16,13 +16,11 @@ Example:
 }
 ```
 
-Success payloads may be provided as either an array or a `JsonResource`.
+Success payloads may be provided as either an array or a Laravel `JsonResource`.
 
 ## Failure Responses
 
-Failure responses use the `success` key and place payloads inside `errors`.
-
-Example:
+Failure responses use the `success` key and place payloads under `errors`.
 
 ```json
 {
@@ -32,91 +30,138 @@ Example:
 }
 ```
 
-Failure payloads may be provided as either an array or a `JsonResource`.
+Failure payloads may be provided as either an array or a Laravel `JsonResource`.
 
-## Design Choice
-
-### Why `data` and `errors` default to empty arrays
+## Why Empty Arrays Are Used by Default
 
 This package uses empty arrays by default instead of `null`.
 
-Advantages:
+This helps API clients because:
 
-- stable API structure
-- simpler frontend handling
-- fewer null checks in clients
-- consistent response expectations
+- the response structure is stable
+- frontend code needs fewer null checks
+- clients can safely loop over `data` or `errors`
+- success and failure responses stay predictable
+
+## Empty Payload Behavior
+
+Empty payloads do not always mean failure.
+
+Some methods use an empty payload as a valid successful response. For example, list-style responses such as `list()`, `filteredList()`, `searchResults()`, `attributesList()`, `valuesList()`, `attributeRanges()`, and `dateRange()` return `200 OK` even when the result is empty.
+
+Some methods treat an empty payload as a missing result. For example, `detail()` returns `404 Not Found` when the resource payload is empty, and `aiAnswer()` returns `404 Not Found` when no answer is available.
 
 ## Main Response Categories
 
-### Authentication responses
+### Authentication Responses
 
-Used for common authentication cases such as login, invalid login credentials, logout, token validation, and unauthenticated access.
+Used for common authentication cases:
 
-### Validation responses
+- login success
+- logout success
+- valid token
+- invalid token
+- invalid login credentials
+- unauthenticated access
 
-Used for invalid inputs, invalid attributes, or failed captcha validation.
+### Data Responses
 
-### External API responses
+Used for common read operations:
 
-Used when an external API rejects a request or is unavailable.
+- detail response
+- list response
+- filtered list response
+- search results response
+- attributes list response
+- values list response
+- attribute ranges response
+- date range response
 
-### Data responses
+### Validation Responses
 
-Used for detail views, collections, filtered lists, search results, value lists, attribute ranges, and date ranges.
+Used when user input is invalid:
 
-## Response Construction
+- invalid inputs
+- invalid attributes
+- invalid captcha
 
-The package is built around three layers:
+### Process Responses
 
-### Response classes
+Used for long-running or background operations:
+
+- accepted process
+- finished process
+- rejected process
+
+### AI Responses
+
+Used for AI-generated content:
+
+- available AI answer
+- missing AI answer
+
+### External API Responses
+
+Used when the application depends on another service:
+
+- external API rejected the request
+- external API is unavailable
+
+### Rate Limit Responses
+
+Used when the client sends too many requests.
+
+### System Responses
+
+Used for internal server errors.
+
+## Response Construction Layers
+
+The package is built around three layers.
+
+### Response Classes
 
 Response classes define the HTTP status code and final response shape.
 
-Examples include:
+Examples:
 
 - `OkResponse`
 - `UnauthorizedResponse`
-- `ForbiddenResponse`
 - `NotFoundResponse`
 - `BadGatewayResponse`
 - `ServiceUnavailableResponse`
 - `UnprocessableEntityResponse`
+- `TooManyRequestsResponse`
+- `InternalServerErrorResponse`
 
-### Action classes
+### Action Classes
 
-Action classes provide higher-level response builders for common use cases.
+Action classes contain higher-level response methods for common use cases.
 
-Examples include:
+Examples:
 
+- `AiResponseAction`
 - `AuthenticationResponseAction`
 - `DetailResponseAction`
 - `ListResponseAction`
 - `RangesResponseAction`
 - `ValuesResponseAction`
 - `ExternalApiResponseAction`
+- `ProcessResponseAction`
+- `RateLimitResponseAction`
+- `SystemResponseAction`
 - `ValidationResponseAction`
 
-### Manager and facade entry point
+### Manager and Facade
 
-The package also provides a central manager and facade entry point for delegating to action classes from a single access point.
+The manager is the central entry point behind the facade.
 
-## Translation Support
-
-Response messages are resolved through namespaced package translations.
-
-Examples:
+Most applications should use the facade directly:
 
 ```php
 <?php
 
-__('bersiv-api-response::messages.successful.model_found', ['model' => 'user']);
-__('bersiv-api-response::messages.failures.invalid_inputs');
-__('bersiv-api-response::auths.successful.login');
-```
+use NavidBakhtiary\BersivApiResponse\Facades\BersivApiResponse;
 
-If you want to override these messages in your application, publish the package translations:
-
-```php
-php artisan vendor:publish --tag=bersiv-api-response-translations
+return BersivApiResponse::invalidInputs(errors: $validator->errors()->toArray());
 ```
