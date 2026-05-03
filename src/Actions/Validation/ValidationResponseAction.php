@@ -62,12 +62,12 @@ class ValidationResponseAction
 	{
 		return (
 			new ForbiddenResponse(
-				__('bersiv-api-response::auths.failures.invalid_captcha'),
+				__('bersiv-api-response::messages.failures.invalid_captcha'),
 				$errors
 			)
 		)->send();
 	}
-	
+
 	/**
 	 * Return a response for invalid request inputs.
 	 *

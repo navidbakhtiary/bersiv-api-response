@@ -3,7 +3,6 @@
 return [
 	'failures' => [
 		'incorrect_credentials' => 'Invalid credentials.',
-		'invalid_captcha' => 'Invalid captcha.',
 		'invalid_token' => 'The token is invalid.',
 		'unauthenticated' => 'Authentication is required.',
 	],
