@@ -1,10 +1,10 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Actions\System;
+namespace NBDev\BersivApiResponse\Actions\System;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
-use NavidBakhtiary\BersivApiResponse\Responses\Failures\InternalServerErrorResponse;
+use NBDev\BersivApiResponse\Responses\Failures\InternalServerErrorResponse;
 
 /**
  * Handles system-level failure responses.

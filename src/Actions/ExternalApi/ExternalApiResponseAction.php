@@ -1,11 +1,11 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Actions\ExternalApi;
+namespace NBDev\BersivApiResponse\Actions\ExternalApi;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
-use NavidBakhtiary\BersivApiResponse\Responses\Failures\BadGatewayResponse;
-use NavidBakhtiary\BersivApiResponse\Responses\Failures\ServiceUnavailableResponse;
+use NBDev\BersivApiResponse\Responses\Failures\BadGatewayResponse;
+use NBDev\BersivApiResponse\Responses\Failures\ServiceUnavailableResponse;
 
 /**
  * Handles responses related to external API interactions.

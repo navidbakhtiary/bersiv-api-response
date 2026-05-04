@@ -1,26 +1,26 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Managers;
+namespace NBDev\BersivApiResponse\Managers;
 
-use NavidBakhtiary\BersivApiResponse\Actions\AI\AiResponseAction;
-use NavidBakhtiary\BersivApiResponse\Actions\Auth\AuthenticationResponseAction;
-use NavidBakhtiary\BersivApiResponse\Actions\Data\DetailResponseAction;
-use NavidBakhtiary\BersivApiResponse\Actions\Data\ListResponseAction;
-use NavidBakhtiary\BersivApiResponse\Actions\Data\RangesResponseAction;
-use NavidBakhtiary\BersivApiResponse\Actions\Data\ValuesResponseAction;
-use NavidBakhtiary\BersivApiResponse\Actions\ExternalApi\ExternalApiResponseAction;
-use NavidBakhtiary\BersivApiResponse\Actions\Process\ProcessResponseAction;
-use NavidBakhtiary\BersivApiResponse\Actions\RateLimit\RateLimitResponseAction;
-use NavidBakhtiary\BersivApiResponse\Actions\System\SystemResponseAction;
-use NavidBakhtiary\BersivApiResponse\Actions\Validation\ValidationResponseAction;
-use NavidBakhtiary\BersivApiResponse\Managers\Concerns\HandlesAiResponses;
-use NavidBakhtiary\BersivApiResponse\Managers\Concerns\HandlesAuthenticationResponses;
-use NavidBakhtiary\BersivApiResponse\Managers\Concerns\HandlesDataResponses;
-use NavidBakhtiary\BersivApiResponse\Managers\Concerns\HandlesExternalApiResponses;
-use NavidBakhtiary\BersivApiResponse\Managers\Concerns\HandlesProcessResponses;
-use NavidBakhtiary\BersivApiResponse\Managers\Concerns\HandlesRateLimitResponses;
-use NavidBakhtiary\BersivApiResponse\Managers\Concerns\HandlesSystemResponses;
-use NavidBakhtiary\BersivApiResponse\Managers\Concerns\HandlesValidationResponses;
+use NBDev\BersivApiResponse\Actions\AI\AiResponseAction;
+use NBDev\BersivApiResponse\Actions\Auth\AuthenticationResponseAction;
+use NBDev\BersivApiResponse\Actions\Data\DetailResponseAction;
+use NBDev\BersivApiResponse\Actions\Data\ListResponseAction;
+use NBDev\BersivApiResponse\Actions\Data\RangesResponseAction;
+use NBDev\BersivApiResponse\Actions\Data\ValuesResponseAction;
+use NBDev\BersivApiResponse\Actions\ExternalApi\ExternalApiResponseAction;
+use NBDev\BersivApiResponse\Actions\Process\ProcessResponseAction;
+use NBDev\BersivApiResponse\Actions\RateLimit\RateLimitResponseAction;
+use NBDev\BersivApiResponse\Actions\System\SystemResponseAction;
+use NBDev\BersivApiResponse\Actions\Validation\ValidationResponseAction;
+use NBDev\BersivApiResponse\Managers\Concerns\HandlesAiResponses;
+use NBDev\BersivApiResponse\Managers\Concerns\HandlesAuthenticationResponses;
+use NBDev\BersivApiResponse\Managers\Concerns\HandlesDataResponses;
+use NBDev\BersivApiResponse\Managers\Concerns\HandlesExternalApiResponses;
+use NBDev\BersivApiResponse\Managers\Concerns\HandlesProcessResponses;
+use NBDev\BersivApiResponse\Managers\Concerns\HandlesRateLimitResponses;
+use NBDev\BersivApiResponse\Managers\Concerns\HandlesSystemResponses;
+use NBDev\BersivApiResponse\Managers\Concerns\HandlesValidationResponses;
 
 /**
  * Central manager for Bersiv response actions.

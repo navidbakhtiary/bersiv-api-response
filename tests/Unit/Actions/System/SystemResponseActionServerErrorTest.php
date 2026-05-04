@@ -1,11 +1,11 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Tests\Unit\Actions\System;
+namespace NBDev\BersivApiResponse\Tests\Unit\Actions\System;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
-use NavidBakhtiary\BersivApiResponse\Actions\System\SystemResponseAction;
-use NavidBakhtiary\BersivApiResponse\Tests\TestCase;
+use NBDev\BersivApiResponse\Actions\System\SystemResponseAction;
+use NBDev\BersivApiResponse\Tests\TestCase;
 
 class SystemResponseActionServerErrorTest extends TestCase
 {

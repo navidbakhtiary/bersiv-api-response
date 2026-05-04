@@ -1,12 +1,12 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Actions\Data;
+namespace NBDev\BersivApiResponse\Actions\Data;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
-use NavidBakhtiary\BersivApiResponse\Helpers\Utilities;
-use NavidBakhtiary\BersivApiResponse\Responses\Failures\NotFoundResponse;
-use NavidBakhtiary\BersivApiResponse\Responses\Successes\OkResponse;
+use NBDev\BersivApiResponse\Helpers\Utilities;
+use NBDev\BersivApiResponse\Responses\Failures\NotFoundResponse;
+use NBDev\BersivApiResponse\Responses\Successes\OkResponse;
 
 /**
  * Handles detail responses for single-resource endpoints.

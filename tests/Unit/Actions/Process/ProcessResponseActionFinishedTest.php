@@ -1,11 +1,11 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Tests\Unit\Actions\Process;
+namespace NBDev\BersivApiResponse\Tests\Unit\Actions\Process;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
-use NavidBakhtiary\BersivApiResponse\Actions\Process\ProcessResponseAction;
-use NavidBakhtiary\BersivApiResponse\Tests\TestCase;
+use NBDev\BersivApiResponse\Actions\Process\ProcessResponseAction;
+use NBDev\BersivApiResponse\Tests\TestCase;
 
 class ProcessResponseActionFinishedTest extends TestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Helpers;
+namespace NBDev\BersivApiResponse\Helpers;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

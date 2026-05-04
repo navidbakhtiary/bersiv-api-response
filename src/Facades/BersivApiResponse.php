@@ -1,9 +1,9 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Facades;
+namespace NBDev\BersivApiResponse\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use NavidBakhtiary\BersivApiResponse\Managers\BersivApiResponseManager;
+use NBDev\BersivApiResponse\Managers\BersivApiResponseManager;
 
 /**
  * Facade for accessing Bersiv API response actions.

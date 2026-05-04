@@ -1,8 +1,8 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Tests;
+namespace NBDev\BersivApiResponse\Tests;
 
-use NavidBakhtiary\BersivApiResponse\Providers\BersivApiResponseServiceProvider;
+use NBDev\BersivApiResponse\Providers\BersivApiResponseServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra

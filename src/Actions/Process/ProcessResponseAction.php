@@ -1,12 +1,12 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Actions\Process;
+namespace NBDev\BersivApiResponse\Actions\Process;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
-use NavidBakhtiary\BersivApiResponse\Responses\Failures\UnprocessableEntityResponse;
-use NavidBakhtiary\BersivApiResponse\Responses\Successes\AcceptedResponse;
-use NavidBakhtiary\BersivApiResponse\Responses\Successes\OkResponse;
+use NBDev\BersivApiResponse\Responses\Failures\UnprocessableEntityResponse;
+use NBDev\BersivApiResponse\Responses\Successes\AcceptedResponse;
+use NBDev\BersivApiResponse\Responses\Successes\OkResponse;
 
 /**
  * Handles process-related responses.

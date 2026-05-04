@@ -1,11 +1,11 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Actions\Auth;
+namespace NBDev\BersivApiResponse\Actions\Auth;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
-use NavidBakhtiary\BersivApiResponse\Responses\Failures\UnauthorizedResponse;
-use NavidBakhtiary\BersivApiResponse\Responses\Successes\OkResponse;
+use NBDev\BersivApiResponse\Responses\Failures\UnauthorizedResponse;
+use NBDev\BersivApiResponse\Responses\Successes\OkResponse;
 
 /**
  * Handles authentication-related responses.

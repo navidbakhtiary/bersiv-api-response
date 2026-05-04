@@ -1,9 +1,9 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Providers;
+namespace NBDev\BersivApiResponse\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use NavidBakhtiary\BersivApiResponse\Managers\BersivApiResponseManager;
+use NBDev\BersivApiResponse\Managers\BersivApiResponseManager;
 
 /**
  * Service provider for the Bersiv API Response package.

@@ -1,12 +1,12 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Actions\Validation;
+namespace NBDev\BersivApiResponse\Actions\Validation;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
-use NavidBakhtiary\BersivApiResponse\Helpers\Utilities;
-use NavidBakhtiary\BersivApiResponse\Responses\Failures\ForbiddenResponse;
-use NavidBakhtiary\BersivApiResponse\Responses\Failures\UnprocessableEntityResponse;
+use NBDev\BersivApiResponse\Helpers\Utilities;
+use NBDev\BersivApiResponse\Responses\Failures\ForbiddenResponse;
+use NBDev\BersivApiResponse\Responses\Failures\UnprocessableEntityResponse;
 
 /**
  * Handles validation-related failure responses.

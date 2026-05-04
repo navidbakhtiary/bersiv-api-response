@@ -1,10 +1,10 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Actions\Data;
+namespace NBDev\BersivApiResponse\Actions\Data;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
-use NavidBakhtiary\BersivApiResponse\Responses\Successes\OkResponse;
+use NBDev\BersivApiResponse\Responses\Successes\OkResponse;
 
 /**
  * Handles value-list success responses.

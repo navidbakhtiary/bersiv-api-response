@@ -1,9 +1,9 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Responses\Successes;
+namespace NBDev\BersivApiResponse\Responses\Successes;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use NavidBakhtiary\BersivApiResponse\Responses\ApiResponse;
+use NBDev\BersivApiResponse\Responses\ApiResponse;
 
 /**
  * Base class for successful responses.

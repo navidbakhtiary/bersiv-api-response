@@ -1,10 +1,10 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Actions\RateLimit;
+namespace NBDev\BersivApiResponse\Actions\RateLimit;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
-use NavidBakhtiary\BersivApiResponse\Responses\Failures\TooManyRequestsResponse;
+use NBDev\BersivApiResponse\Responses\Failures\TooManyRequestsResponse;
 
 /**
  * Handles rate-limit-related failure responses.

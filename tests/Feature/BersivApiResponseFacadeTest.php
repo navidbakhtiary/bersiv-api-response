@@ -1,10 +1,10 @@
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Tests\Feature;
+namespace NBDev\BersivApiResponse\Tests\Feature;
 
 use Illuminate\Http\JsonResponse;
-use NavidBakhtiary\BersivApiResponse\Facades\BersivApiResponse;
-use NavidBakhtiary\BersivApiResponse\Providers\BersivApiResponseServiceProvider;
+use NBDev\BersivApiResponse\Facades\BersivApiResponse;
+use NBDev\BersivApiResponse\Providers\BersivApiResponseServiceProvider;
 use Orchestra\Testbench\TestCase;
 
 class BersivApiResponseFacadeTest extends TestCase
