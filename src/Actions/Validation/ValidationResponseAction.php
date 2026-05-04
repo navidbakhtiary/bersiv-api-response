@@ -79,7 +79,7 @@ class ValidationResponseAction
     {
         return (
             new UnprocessableEntityResponse(
-                $message ?? __('bersiv-api-response::messages.failures.invalid_inputs'),
+                __('bersiv-api-response::messages.failures.invalid_inputs'),
                 $errors
             )
         )->send();

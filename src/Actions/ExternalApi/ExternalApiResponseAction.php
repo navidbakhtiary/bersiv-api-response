@@ -35,7 +35,7 @@ class ExternalApiResponseAction
     {
         return (
             new BadGatewayResponse(
-                $message ?? __('bersiv-api-response::messages.failures.external_api_rejected'),
+                __('bersiv-api-response::messages.failures.external_api_rejected'),
                 $errors
             )
         )->send();
