@@ -70,13 +70,13 @@ Example keywords:
 
 ```json
 [
-    "laravel",
-    "api",
-    "response",
-    "json-response",
-    "api-response",
-    "facade",
-    "php"
+	"laravel",
+	"api",
+	"response",
+	"json-response",
+	"api-response",
+	"facade",
+	"php"
 ]
 ```
 
@@ -112,7 +112,7 @@ composer dump-autoload
 If you use a Laravel test application, also test the package in that application:
 
 ```bash
-composer update navidbakhtiary/bersiv-api-response
+composer update nbdev/bersiv-api-response
 php artisan vendor:publish --tag=bersiv-api-response-translations
 php artisan test
 ```

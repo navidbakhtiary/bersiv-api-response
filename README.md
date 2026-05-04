@@ -9,7 +9,7 @@ Instead of repeating response structures and messages in every controller, you c
 ```php
 <?php
 
-use NavidBakhtiary\BersivApiResponse\Facades\BersivApiResponse;
+use NBDev\BersivApiResponse\Facades\BersivApiResponse;
 
 return BersivApiResponse::detail('user', $user_resource);
 ```
@@ -107,7 +107,7 @@ Some methods treat an empty payload as a missing result:
 ## Installation
 
 ```bash
-composer require navidbakhtiary/bersiv-api-response
+composer require nbdev/bersiv-api-response
 ```
 
 Laravel package discovery registers the service provider automatically.
@@ -118,7 +118,7 @@ Laravel package discovery registers the service provider automatically.
 <?php
 
 use Illuminate\Http\JsonResponse;
-use NavidBakhtiary\BersivApiResponse\Facades\BersivApiResponse;
+use NBDev\BersivApiResponse\Facades\BersivApiResponse;
 
 class AuthController
 {
@@ -178,9 +178,7 @@ Example response:
   "success": false,
   "message": "Invalid input.",
   "errors": {
-    "email": [
-      "The email field is required."
-    ]
+    "email": ["The email field is required."]
   }
 }
 ```
@@ -223,16 +221,16 @@ Example response:
 
 ## Available Facade Groups
 
-| Group | Purpose |
-| --- | --- |
-| AI | Return AI-generated answers or missing-answer failures. |
-| Authentication | Return login, logout, token, and unauthenticated responses. |
-| Data | Return detail, list, search, filter, range, and values responses. |
-| External API | Return responses for rejected or unavailable third-party APIs. |
-| Process | Return responses for accepted, finished, or rejected processes. |
-| Rate Limit | Return too many requests responses. |
-| System | Return internal server error responses. |
-| Validation | Return invalid inputs, invalid attributes, and captcha failures. |
+| Group          | Purpose                                                           |
+| -------------- | ----------------------------------------------------------------- |
+| AI             | Return AI-generated answers or missing-answer failures.           |
+| Authentication | Return login, logout, token, and unauthenticated responses.       |
+| Data           | Return detail, list, search, filter, range, and values responses. |
+| External API   | Return responses for rejected or unavailable third-party APIs.    |
+| Process        | Return responses for accepted, finished, or rejected processes.   |
+| Rate Limit     | Return too many requests responses.                               |
+| System         | Return internal server error responses.                           |
+| Validation     | Return invalid inputs, invalid attributes, and captcha failures.  |
 
 ## Translations
 

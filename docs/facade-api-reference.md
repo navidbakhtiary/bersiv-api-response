@@ -5,7 +5,7 @@ This page documents all public semantic functions available through the `BersivA
 ```php
 <?php
 
-use NavidBakhtiary\BersivApiResponse\Facades\BersivApiResponse;
+use NBDev\BersivApiResponse\Facades\BersivApiResponse;
 ```
 
 All methods return `Illuminate\Http\JsonResponse`.
@@ -17,33 +17,33 @@ All failure payloads are returned under `errors`.
 
 ## Status Code Summary
 
-| Method | Success Status | Failure Status | Purpose |
-| --- | ---: | ---: | --- |
-| `aiAnswer()` | 200 | 404 | Return an AI answer or a missing-answer failure. |
-| `login()` | 200 | - | Return successful login data. |
-| `logout()` | 200 | - | Return successful logout data. |
-| `tokenValid()` | 200 | - | Confirm that a token is valid. |
-| `invalidLoginCredentials()` | - | 401 | Return invalid credential failure. |
-| `invalidToken()` | - | 401 | Return invalid token failure. |
-| `unauthenticated()` | - | 401 | Return unauthenticated access failure. |
-| `detail()` | 200 | 404 | Return a single resource or not found. |
-| `list()` | 200 | - | Return a collection, whether it has items or is empty. |
-| `filteredList()` | 200 | - | Return filtered data, whether it has items or is empty. |
-| `searchResults()` | 200 | - | Return search results, whether results exist or are empty. |
-| `attributesList()` | 200 | - | Return attribute names, whether attributes exist or the list is empty. |
-| `valuesList()` | 200 | - | Return values for an attribute, whether values exist or the list is empty. |
-| `attributeRanges()` | 200 | - | Return attribute ranges, whether ranges exist or the list is empty. |
-| `dateRange()` | 200 | - | Return date range data, whether a range exists or is empty. |
-| `invalidAttributes()` | - | 422 | Return invalid attributes failure. |
-| `invalidCaptcha()` | - | 422 | Return captcha validation failure. |
-| `invalidInputs()` | - | 422 | Return input validation failure. |
-| `externalApiRejected()` | - | 502 | Return external API rejected failure. |
-| `externalApiUnavailable()` | - | 503 | Return external API unavailable failure. |
-| `processAccepted()` | 202 | - | Return accepted background process response. |
-| `processFinished()` | 200 | - | Return finished process response. |
-| `processRejected()` | - | 422 | Return rejected process response. |
-| `tooManyRequests()` | - | 429 | Return rate limit failure. |
-| `serverError()` | - | 500 | Return internal server error failure. |
+| Method                      | Success Status | Failure Status | Purpose                                                                    |
+| --------------------------- | -------------: | -------------: | -------------------------------------------------------------------------- |
+| `aiAnswer()`                |            200 |            404 | Return an AI answer or a missing-answer failure.                           |
+| `login()`                   |            200 |              - | Return successful login data.                                              |
+| `logout()`                  |            200 |              - | Return successful logout data.                                             |
+| `tokenValid()`              |            200 |              - | Confirm that a token is valid.                                             |
+| `invalidLoginCredentials()` |              - |            401 | Return invalid credential failure.                                         |
+| `invalidToken()`            |              - |            401 | Return invalid token failure.                                              |
+| `unauthenticated()`         |              - |            401 | Return unauthenticated access failure.                                     |
+| `detail()`                  |            200 |            404 | Return a single resource or not found.                                     |
+| `list()`                    |            200 |              - | Return a collection, whether it has items or is empty.                     |
+| `filteredList()`            |            200 |              - | Return filtered data, whether it has items or is empty.                    |
+| `searchResults()`           |            200 |              - | Return search results, whether results exist or are empty.                 |
+| `attributesList()`          |            200 |              - | Return attribute names, whether attributes exist or the list is empty.     |
+| `valuesList()`              |            200 |              - | Return values for an attribute, whether values exist or the list is empty. |
+| `attributeRanges()`         |            200 |              - | Return attribute ranges, whether ranges exist or the list is empty.        |
+| `dateRange()`               |            200 |              - | Return date range data, whether a range exists or is empty.                |
+| `invalidAttributes()`       |              - |            422 | Return invalid attributes failure.                                         |
+| `invalidCaptcha()`          |              - |            422 | Return captcha validation failure.                                         |
+| `invalidInputs()`           |              - |            422 | Return input validation failure.                                           |
+| `externalApiRejected()`     |              - |            502 | Return external API rejected failure.                                      |
+| `externalApiUnavailable()`  |              - |            503 | Return external API unavailable failure.                                   |
+| `processAccepted()`         |            202 |              - | Return accepted background process response.                               |
+| `processFinished()`         |            200 |              - | Return finished process response.                                          |
+| `processRejected()`         |              - |            422 | Return rejected process response.                                          |
+| `tooManyRequests()`         |              - |            429 | Return rate limit failure.                                                 |
+| `serverError()`             |              - |            500 | Return internal server error failure.                                      |
 
 ## AI Responses
 
@@ -58,9 +58,9 @@ When `$data` is empty, the response is a not found failure.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$data` | `array\|JsonResource` | No | AI answer payload. |
+| Parameter | Type                  | Required | Description        |
+| --------- | --------------------- | -------- | ------------------ |
+| `$data`   | `array\|JsonResource` | No       | AI answer payload. |
 
 Example:
 
@@ -102,9 +102,9 @@ Returns a success response for a completed login operation.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$data` | `array\|JsonResource` | No | Login payload, usually user data and token data. |
+| Parameter | Type                  | Required | Description                                      |
+| --------- | --------------------- | -------- | ------------------------------------------------ |
+| `$data`   | `array\|JsonResource` | No       | Login payload, usually user data and token data. |
 
 Example:
 
@@ -129,9 +129,9 @@ Returns a success response for a completed logout operation.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$data` | `array\|JsonResource` | No | Optional logout payload. |
+| Parameter | Type                  | Required | Description              |
+| --------- | --------------------- | -------- | ------------------------ |
+| `$data`   | `array\|JsonResource` | No       | Optional logout payload. |
 
 Example:
 
@@ -147,9 +147,9 @@ Returns a success response when the provided token is valid.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$data` | `array\|JsonResource` | No | Optional token validation payload. |
+| Parameter | Type                  | Required | Description                        |
+| --------- | --------------------- | -------- | ---------------------------------- |
+| `$data`   | `array\|JsonResource` | No       | Optional token validation payload. |
 
 Example:
 
@@ -167,9 +167,9 @@ Returns an unauthorized response for invalid login credentials.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$errors` | `array\|JsonResource` | No | Optional structured error details. |
+| Parameter | Type                  | Required | Description                        |
+| --------- | --------------------- | -------- | ---------------------------------- |
+| `$errors` | `array\|JsonResource` | No       | Optional structured error details. |
 
 Example:
 
@@ -187,9 +187,9 @@ Returns an unauthorized response when the provided token is invalid.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$errors` | `array\|JsonResource` | No | Optional structured token error details. |
+| Parameter | Type                  | Required | Description                              |
+| --------- | --------------------- | -------- | ---------------------------------------- |
+| `$errors` | `array\|JsonResource` | No       | Optional structured token error details. |
 
 Example:
 
@@ -207,9 +207,9 @@ Returns an unauthorized response for unauthenticated access.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$errors` | `array\|JsonResource` | No | Optional authentication error details. |
+| Parameter | Type                  | Required | Description                            |
+| --------- | --------------------- | -------- | -------------------------------------- |
+| `$errors` | `array\|JsonResource` | No       | Optional authentication error details. |
 
 Example:
 
@@ -230,10 +230,10 @@ When the resource payload is empty, it returns a not found response.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$model_name` | `string` | Yes | Entity/model display name used in messages. |
-| `$model_resource` | `array\|JsonResource` | No | Single resource payload. |
+| Parameter         | Type                  | Required | Description                                 |
+| ----------------- | --------------------- | -------- | ------------------------------------------- |
+| `$model_name`     | `string`              | Yes      | Entity/model display name used in messages. |
+| `$model_resource` | `array\|JsonResource` | No       | Single resource payload.                    |
 
 Example:
 
@@ -252,10 +252,10 @@ Returns a response for a collection of entities.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$model_name` | `string` | Yes | Entity/model display name used in messages. |
-| `$data_resource` | `array\|JsonResource` | No | Collection resource or array data. |
+| Parameter        | Type                  | Required | Description                                 |
+| ---------------- | --------------------- | -------- | ------------------------------------------- |
+| `$model_name`    | `string`              | Yes      | Entity/model display name used in messages. |
+| `$data_resource` | `array\|JsonResource` | No       | Collection resource or array data.          |
 
 Example:
 
@@ -273,11 +273,11 @@ Returns a response for filtered data.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$model_name` | `string` | Yes | Entity/model display name used in messages. |
-| `$attributes` | `string\|array` | No | Filter attribute or attributes used in the request. |
-| `$data_resource` | `array\|JsonResource` | No | Filtered data payload. |
+| Parameter        | Type                  | Required | Description                                         |
+| ---------------- | --------------------- | -------- | --------------------------------------------------- |
+| `$model_name`    | `string`              | Yes      | Entity/model display name used in messages.         |
+| `$attributes`    | `string\|array`       | No       | Filter attribute or attributes used in the request. |
+| `$data_resource` | `array\|JsonResource` | No       | Filtered data payload.                              |
 
 Example:
 
@@ -293,10 +293,10 @@ Returns a response for search results.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$query_entity` | `string` | Yes | Searched entity name. |
-| `$data_resource` | `array\|JsonResource` | No | Search result payload. |
+| Parameter        | Type                  | Required | Description            |
+| ---------------- | --------------------- | -------- | ---------------------- |
+| `$query_entity`  | `string`              | Yes      | Searched entity name.  |
+| `$data_resource` | `array\|JsonResource` | No       | Search result payload. |
 
 Example:
 
@@ -312,10 +312,10 @@ Returns a response for a list of available attributes.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$model_name` | `string` | Yes | Entity/model display name used in messages. |
-| `$attributes` | `array\|JsonResource` | No | Attribute names or metadata. |
+| Parameter     | Type                  | Required | Description                                 |
+| ------------- | --------------------- | -------- | ------------------------------------------- |
+| `$model_name` | `string`              | Yes      | Entity/model display name used in messages. |
+| `$attributes` | `array\|JsonResource` | No       | Attribute names or metadata.                |
 
 Example:
 
@@ -335,11 +335,11 @@ Returns a response for a list of values belonging to one attribute.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$model_name` | `string` | Yes | Entity/model display name used in messages. |
-| `$attribute` | `string` | Yes | Attribute name used in messages. |
-| `$values` | `array\|JsonResource` | No | Values for the given attribute. |
+| Parameter     | Type                  | Required | Description                                 |
+| ------------- | --------------------- | -------- | ------------------------------------------- |
+| `$model_name` | `string`              | Yes      | Entity/model display name used in messages. |
+| `$attribute`  | `string`              | Yes      | Attribute name used in messages.            |
+| `$values`     | `array\|JsonResource` | No       | Values for the given attribute.             |
 
 Example:
 
@@ -359,10 +359,10 @@ Returns a response for available attribute ranges.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$model_name` | `string` | Yes | Entity/model display name used in messages. |
-| `$ranges` | `array\|JsonResource` | No | Attribute range data. |
+| Parameter     | Type                  | Required | Description                                 |
+| ------------- | --------------------- | -------- | ------------------------------------------- |
+| `$model_name` | `string`              | Yes      | Entity/model display name used in messages. |
+| `$ranges`     | `array\|JsonResource` | No       | Attribute range data.                       |
 
 Example:
 
@@ -383,10 +383,10 @@ Returns a response for date range data.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$model_name` | `string` | Yes | Entity/model display name used in messages. |
-| `$date_range_resource` | `array\|JsonResource` | No | Date range data. |
+| Parameter              | Type                  | Required | Description                                 |
+| ---------------------- | --------------------- | -------- | ------------------------------------------- |
+| `$model_name`          | `string`              | Yes      | Entity/model display name used in messages. |
+| `$date_range_resource` | `array\|JsonResource` | No       | Date range data.                            |
 
 Example:
 
@@ -407,10 +407,10 @@ Returns an unprocessable entity response for invalid request inputs.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$message` | `string\|null` | No | Optional custom validation message. |
-| `$errors` | `array\|JsonResource` | No | Structured validation errors. |
+| Parameter  | Type                  | Required | Description                         |
+| ---------- | --------------------- | -------- | ----------------------------------- |
+| `$message` | `string\|null`        | No       | Optional custom validation message. |
+| `$errors`  | `array\|JsonResource` | No       | Structured validation errors.       |
 
 Example:
 
@@ -428,10 +428,10 @@ Returns an unprocessable entity response for invalid attribute names.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$attributes` | `array` | Yes | Invalid attribute names. |
-| `$errors` | `array\|JsonResource` | No | Optional structured error details. |
+| Parameter     | Type                  | Required | Description                        |
+| ------------- | --------------------- | -------- | ---------------------------------- |
+| `$attributes` | `array`               | Yes      | Invalid attribute names.           |
+| `$errors`     | `array\|JsonResource` | No       | Optional structured error details. |
 
 Example:
 
@@ -449,9 +449,9 @@ Returns an unprocessable entity response for failed captcha validation.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$errors` | `array\|JsonResource` | No | Optional captcha validation errors. |
+| Parameter | Type                  | Required | Description                         |
+| --------- | --------------------- | -------- | ----------------------------------- |
+| `$errors` | `array\|JsonResource` | No       | Optional captcha validation errors. |
 
 Example:
 
@@ -471,9 +471,9 @@ Returns a bad gateway response when an external API rejects the request.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$errors` | `array\|JsonResource` | No | Optional structured error details. |
+| Parameter | Type                  | Required | Description                        |
+| --------- | --------------------- | -------- | ---------------------------------- |
+| `$errors` | `array\|JsonResource` | No       | Optional structured error details. |
 
 Example:
 
@@ -493,9 +493,9 @@ Returns a service unavailable response when an external API cannot be reached or
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$errors` | `array\|JsonResource` | No | Optional structured error details. |
+| Parameter | Type                  | Required | Description                        |
+| --------- | --------------------- | -------- | ---------------------------------- |
+| `$errors` | `array\|JsonResource` | No       | Optional structured error details. |
 
 Example:
 
@@ -515,10 +515,10 @@ Returns an accepted response when a process has started but the final result is 
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$process_name` | `string` | Yes | Display name of the requested process. |
-| `$data` | `array\|JsonResource` | No | Optional process payload, such as job ID, status, or tracking data. |
+| Parameter       | Type                  | Required | Description                                                         |
+| --------------- | --------------------- | -------- | ------------------------------------------------------------------- |
+| `$process_name` | `string`              | Yes      | Display name of the requested process.                              |
+| `$data`         | `array\|JsonResource` | No       | Optional process payload, such as job ID, status, or tracking data. |
 
 Example:
 
@@ -537,10 +537,10 @@ Returns a success response when a process has completed successfully and the res
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$process_name` | `string` | Yes | Display name of the requested process. |
-| `$data` | `array\|JsonResource` | No | Optional process result payload. |
+| Parameter       | Type                  | Required | Description                            |
+| --------------- | --------------------- | -------- | -------------------------------------- |
+| `$process_name` | `string`              | Yes      | Display name of the requested process. |
+| `$data`         | `array\|JsonResource` | No       | Optional process result payload.       |
 
 Example:
 
@@ -558,10 +558,10 @@ Returns an unprocessable entity response when a process cannot be accepted.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$process_name` | `string` | Yes | Display name of the requested process. |
-| `$errors` | `array\|JsonResource` | No | Optional structured error details. |
+| Parameter       | Type                  | Required | Description                            |
+| --------------- | --------------------- | -------- | -------------------------------------- |
+| `$process_name` | `string`              | Yes      | Display name of the requested process. |
+| `$errors`       | `array\|JsonResource` | No       | Optional structured error details.     |
 
 Example:
 
@@ -581,9 +581,9 @@ Returns a too many requests response.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$errors` | `array\|JsonResource` | No | Optional rate limit error details. |
+| Parameter | Type                  | Required | Description                        |
+| --------- | --------------------- | -------- | ---------------------------------- |
+| `$errors` | `array\|JsonResource` | No       | Optional rate limit error details. |
 
 Example:
 
@@ -603,9 +603,9 @@ Returns an internal server error response.
 
 Parameters:
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `$errors` | `array\|JsonResource` | No | Optional structured error details. |
+| Parameter | Type                  | Required | Description                        |
+| --------- | --------------------- | -------- | ---------------------------------- |
+| `$errors` | `array\|JsonResource` | No       | Optional structured error details. |
 
 Example:
 

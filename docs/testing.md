@@ -27,9 +27,9 @@ A typical package `TestCase` for this package looks like this:
 ```php
 <?php
 
-namespace NavidBakhtiary\BersivApiResponse\Tests;
+namespace NBDev\BersivApiResponse\Tests;
 
-use NavidBakhtiary\BersivApiResponse\Providers\BersivApiResponseServiceProvider;
+use NBDev\BersivApiResponse\Providers\BersivApiResponseServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
@@ -53,7 +53,7 @@ Example:
 <?php
 
 use Illuminate\Http\JsonResponse;
-use NavidBakhtiary\BersivApiResponse\Facades\BersivApiResponse;
+use NBDev\BersivApiResponse\Facades\BersivApiResponse;
 
 public function testCanReturnLoginResponseUsingFacade(): void
 {

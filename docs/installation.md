@@ -9,7 +9,7 @@
 ## Install the Package
 
 ```bash
-composer require navidbakhtiary/bersiv-api-response
+composer require nbdev/bersiv-api-response
 ```
 
 ## Package Discovery
@@ -21,7 +21,7 @@ Registered provider:
 ```php
 <?php
 
-NavidBakhtiary\BersivApiResponse\Providers\BersivApiResponseServiceProvider::class;
+NBDev\BersivApiResponse\Providers\BersivApiResponseServiceProvider::class;
 ```
 
 Normally, you do not need to add this provider manually.
@@ -33,7 +33,7 @@ Use the facade in controllers, services, exception handlers, or route closures.
 ```php
 <?php
 
-use NavidBakhtiary\BersivApiResponse\Facades\BersivApiResponse;
+use NBDev\BersivApiResponse\Facades\BersivApiResponse;
 
 return BersivApiResponse::list('User', $users);
 ```
@@ -68,16 +68,16 @@ Make sure your package `composer.json` uses the correct PSR-4 namespaces:
 
 ```json
 {
-    "autoload": {
-        "psr-4": {
-            "NavidBakhtiary\\BersivApiResponse\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "NavidBakhtiary\\BersivApiResponse\\Tests\\": "tests/"
-        }
+  "autoload": {
+    "psr-4": {
+      "NBDev\\BersivApiResponse\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "NBDev\\BersivApiResponse\\Tests\\": "tests/"
+    }
+  }
 }
 ```
 
@@ -95,22 +95,22 @@ Example in the Laravel application's `composer.json`:
 
 ```json
 {
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../packages/bersiv-api-response",
-            "options": {
-                "symlink": true
-            }
-        }
-    ]
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../packages/bersiv-api-response",
+      "options": {
+        "symlink": true
+      }
+    }
+  ]
 }
 ```
 
 Then require the package:
 
 ```bash
-composer require navidbakhtiary/bersiv-api-response:@dev
+composer require nbdev/bersiv-api-response:@dev
 ```
 
 ## Notes

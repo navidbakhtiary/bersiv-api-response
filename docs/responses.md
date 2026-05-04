@@ -161,7 +161,7 @@ Most applications should use the facade directly:
 ```php
 <?php
 
-use NavidBakhtiary\BersivApiResponse\Facades\BersivApiResponse;
+use NBDev\BersivApiResponse\Facades\BersivApiResponse;
 
 return BersivApiResponse::invalidInputs(errors: $validator->errors()->toArray());
 ```

@@ -5,7 +5,7 @@ This page shows common usage examples with the `BersivApiResponse` facade.
 ```php
 <?php
 
-use NavidBakhtiary\BersivApiResponse\Facades\BersivApiResponse;
+use NBDev\BersivApiResponse\Facades\BersivApiResponse;
 ```
 
 ## Authentication
@@ -63,9 +63,7 @@ Example response:
   "success": false,
   "message": "Invalid credentials.",
   "errors": {
-    "email": [
-      "These credentials do not match our records."
-    ]
+    "email": ["These credentials do not match our records."]
   }
 }
 ```
@@ -127,9 +125,7 @@ Example response:
   "success": false,
   "message": "The token is invalid.",
   "errors": {
-    "token": [
-      "The provided token is invalid."
-    ]
+    "token": ["The provided token is invalid."]
   }
 }
 ```
@@ -367,12 +363,7 @@ Example response:
 {
   "success": true,
   "message": "user attributes retrieved.",
-  "data": [
-    "id",
-    "name",
-    "email",
-    "created_at"
-  ]
+  "data": ["id", "name", "email", "created_at"]
 }
 ```
 
@@ -411,10 +402,7 @@ Example response:
 {
   "success": true,
   "message": "status values retrieved for user.",
-  "data": [
-    "active",
-    "inactive"
-  ]
+  "data": ["active", "inactive"]
 }
 ```
 
@@ -559,12 +547,8 @@ Example response:
   "success": false,
   "message": "Invalid input.",
   "errors": {
-    "email": [
-      "The email field is required."
-    ],
-    "password": [
-      "The password field is required."
-    ]
+    "email": ["The email field is required."],
+    "password": ["The password field is required."]
   }
 }
 ```
@@ -589,9 +573,7 @@ Example response:
   "success": false,
   "message": "The submitted profile data is invalid.",
   "errors": {
-    "email": [
-      "The email field is required."
-    ]
+    "email": ["The email field is required."]
   }
 }
 ```
@@ -634,9 +616,7 @@ Example response:
   "success": false,
   "message": "Invalid captcha.",
   "errors": {
-    "captcha": [
-      "Captcha validation failed."
-    ]
+    "captcha": ["Captcha validation failed."]
   }
 }
 ```
@@ -708,9 +688,7 @@ Example response:
   "success": false,
   "message": "The data import process could not be accepted.",
   "errors": {
-    "file": [
-      "The file extension is not supported."
-    ]
+    "file": ["The file extension is not supported."]
   }
 }
 ```
@@ -861,7 +839,7 @@ All payload parameters that accept `array|JsonResource` can receive Laravel reso
 <?php
 
 use App\Http\Resources\UserResource;
-use NavidBakhtiary\BersivApiResponse\Facades\BersivApiResponse;
+use NBDev\BersivApiResponse\Facades\BersivApiResponse;
 
 return BersivApiResponse::detail('User', new UserResource($user));
 ```
