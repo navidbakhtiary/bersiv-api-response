@@ -1,6 +1,14 @@
 {
-	"name": "navidbakhtiary/bersiv-api-response",
+	"name": "nbdev/bersiv-api-response",
 	"description": "A Laravel package for standardized JSON API response structures.",
+	"homepage": "https://github.com/navidbakhtiary/bersiv-api-response",
+	"authors": [
+		{
+			"name": "Navid Bakhtiary",
+			"homepage": "https://github.com/navidbakhtiary",
+			"role": "Developer"
+		}
+	],
 	"type": "library",
 	"license": "MIT",
 	"keywords": [
@@ -14,18 +22,18 @@
 	],
 	"autoload": {
 		"psr-4": {
-			"NavidBakhtiary\\BersivApiResponse\\": "src/"
+			"NBDev\\BersivApiResponse\\": "src/"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"NavidBakhtiary\\BersivApiResponse\\Tests\\": "tests/"
+			"NBDev\\BersivApiResponse\\Tests\\": "tests/"
 		}
 	},
 	"extra": {
 		"laravel": {
 			"providers": [
-				"NavidBakhtiary\\BersivApiResponse\\Providers\\BersivApiResponseServiceProvider"
+				"NBDev\\BersivApiResponse\\Providers\\BersivApiResponseServiceProvider"
 			]
 		}
 	},
