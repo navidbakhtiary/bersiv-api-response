@@ -9,63 +9,63 @@ use NavidBakhtiary\BersivApiResponse\Tests\TestCase;
 
 class AuthenticationResponseActionLogoutTest extends TestCase
 {
-	public function testLogoutReturnsDefaultSuccessContract(): void
-	{
-		$action = new AuthenticationResponseAction();
+    public function test_logout_returns_default_success_contract(): void
+    {
+        $action = new AuthenticationResponseAction;
 
-		$response = $action->logout();
+        $response = $action->logout();
 
-		$response_data = $response->getData(true);
+        $response_data = $response->getData(true);
 
-		$this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
-		$this->assertTrue($response_data['success']);
-		$this->assertSame(__('bersiv-api-response::auths.successful.logout'), $response_data['message']);
-		$this->assertSame([], $response_data['data']);
-		$this->assertArrayHasKey('data', $response_data);
-		$this->assertArrayHasKey('message', $response_data);
-		$this->assertArrayHasKey('success', $response_data);
-		$this->assertArrayNotHasKey('errors', $response_data);
-	}
+        $this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
+        $this->assertTrue($response_data['success']);
+        $this->assertSame(__('bersiv-api-response::auths.successful.logout'), $response_data['message']);
+        $this->assertSame([], $response_data['data']);
+        $this->assertArrayHasKey('data', $response_data);
+        $this->assertArrayHasKey('message', $response_data);
+        $this->assertArrayHasKey('success', $response_data);
+        $this->assertArrayNotHasKey('errors', $response_data);
+    }
 
-	public function testLogoutReturnsGivenArrayData(): void
-	{
-		$action = new AuthenticationResponseAction();
+    public function test_logout_returns_given_array_data(): void
+    {
+        $action = new AuthenticationResponseAction;
 
-		$payload = [
-			'revoked_tokens_count' => 2,
-		];
+        $payload = [
+            'revoked_tokens_count' => 2,
+        ];
 
-		$response = $action->logout($payload);
+        $response = $action->logout($payload);
 
-		$response_data = $response->getData(true);
+        $response_data = $response->getData(true);
 
-		$this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
-		$this->assertTrue($response_data['success']);
-		$this->assertSame(__('bersiv-api-response::auths.successful.logout'), $response_data['message']);
-		$this->assertSame($payload, $response_data['data']);
-		$this->assertArrayHasKey('data', $response_data);
-		$this->assertArrayNotHasKey('errors', $response_data);
-	}
+        $this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
+        $this->assertTrue($response_data['success']);
+        $this->assertSame(__('bersiv-api-response::auths.successful.logout'), $response_data['message']);
+        $this->assertSame($payload, $response_data['data']);
+        $this->assertArrayHasKey('data', $response_data);
+        $this->assertArrayNotHasKey('errors', $response_data);
+    }
 
-	public function testLogoutReturnsGivenJsonResourceData(): void
-	{
-		$action = new AuthenticationResponseAction();
+    public function test_logout_returns_given_json_resource_data(): void
+    {
+        $action = new AuthenticationResponseAction;
 
-		$payload = [
-			'revoked_tokens_count' => 2,
-		];
+        $payload = [
+            'revoked_tokens_count' => 2,
+        ];
 
-		$resource = JsonResource::make($payload);
+        $resource = JsonResource::make($payload);
 
-		$response = $action->logout($resource);
+        $response = $action->logout($resource);
 
-		$response_data = $response->getData(true);
+        $response_data = $response->getData(true);
 
-		$this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
-		$this->assertTrue($response_data['success']);
-		$this->assertSame(__('bersiv-api-response::auths.successful.logout'), $response_data['message']);
-		$this->assertSame($payload, $response_data['data']);
-		$this->assertArrayHasKey('data', $response_data);
-		$this->assertArrayNotHasKey('errors', $response_data);
-	}
+        $this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
+        $this->assertTrue($response_data['success']);
+        $this->assertSame(__('bersiv-api-response::auths.successful.logout'), $response_data['message']);
+        $this->assertSame($payload, $response_data['data']);
+        $this->assertArrayHasKey('data', $response_data);
+        $this->assertArrayNotHasKey('errors', $response_data);
+    }
 }

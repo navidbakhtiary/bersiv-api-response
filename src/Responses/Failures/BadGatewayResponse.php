@@ -13,14 +13,14 @@ use Illuminate\Http\Resources\Json\JsonResource;
  */
 class BadGatewayResponse extends FailureResponse
 {
-	/**
-	 * Create a new bad gateway response instance.
-	 *
-	 * @param string $message The response message.
-	 * @param array|JsonResource $errors Optional structured error details.
-	 */
-	public function __construct(string $message, array|JsonResource $errors = [])
-	{
-		parent::__construct(JsonResponse::HTTP_BAD_GATEWAY, $message, $errors);
-	}
+    /**
+     * Create a new bad gateway response instance.
+     *
+     * @param  string  $message  The response message.
+     * @param  array|JsonResource  $errors  Optional structured error details.
+     */
+    public function __construct(string $message, array|JsonResource $errors = [])
+    {
+        parent::__construct(JsonResponse::HTTP_BAD_GATEWAY, $message, $errors);
+    }
 }

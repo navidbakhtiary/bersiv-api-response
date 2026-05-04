@@ -10,14 +10,14 @@ use Illuminate\Http\Resources\Json\JsonResource;
  */
 class InternalServerErrorResponse extends FailureResponse
 {
-	/**
-	 * Create a new internal server error response instance.
-	 *
-	 * @param string $message The response message.
-	 * @param array|JsonResource $errors Optional structured error details.
-	 */
-	public function __construct(string $message, array|JsonResource $errors = [])
-	{
-		parent::__construct(JsonResponse::HTTP_INTERNAL_SERVER_ERROR, $message, $errors);
-	}
+    /**
+     * Create a new internal server error response instance.
+     *
+     * @param  string  $message  The response message.
+     * @param  array|JsonResource  $errors  Optional structured error details.
+     */
+    public function __construct(string $message, array|JsonResource $errors = [])
+    {
+        parent::__construct(JsonResponse::HTTP_INTERNAL_SERVER_ERROR, $message, $errors);
+    }
 }

@@ -20,48 +20,46 @@ use NavidBakhtiary\BersivApiResponse\Responses\Failures\ServiceUnavailableRespon
  */
 class ExternalApiResponseAction
 {
-	/**
-	 * Return a response when the external API rejects the request.
-	 *
-	 * Common cases:
-	 * - upstream validation failure
-	 * - upstream business-rule rejection
-	 * - malformed request accepted by this app but rejected upstream
-	 *
-	 * @param array|JsonResource $errors Optional structured error details.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public function rejected(array|JsonResource $errors = []): JsonResponse
-	{
-		return (
-			new BadGatewayResponse(
-				$message ?? __('bersiv-api-response::messages.failures.external_api_rejected'),
-				$errors
-			)
-		)->send();
-	}
+    /**
+     * Return a response when the external API rejects the request.
+     *
+     * Common cases:
+     * - upstream validation failure
+     * - upstream business-rule rejection
+     * - malformed request accepted by this app but rejected upstream
+     *
+     * @param  array|JsonResource  $errors  Optional structured error details.
+     * @return JsonResponse The formatted JSON response.
+     */
+    public function rejected(array|JsonResource $errors = []): JsonResponse
+    {
+        return (
+            new BadGatewayResponse(
+                $message ?? __('bersiv-api-response::messages.failures.external_api_rejected'),
+                $errors
+            )
+        )->send();
+    }
 
-	/**
-	 * Return a response when the external API is unavailable.
-	 *
-	 * Common cases:
-	 * - timeout
-	 * - connection failure
-	 * - upstream downtime
-	 * - temporary service outage
-	 *
-	 * @param array|JsonResource $errors Optional structured error details.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public function unavailable(array|JsonResource $errors = []): JsonResponse
-	{
-		return (
-			new ServiceUnavailableResponse(
-				__('bersiv-api-response::messages.failures.unavailable_external_api'),
-				$errors
-			)
-		)->send();
-	}
+    /**
+     * Return a response when the external API is unavailable.
+     *
+     * Common cases:
+     * - timeout
+     * - connection failure
+     * - upstream downtime
+     * - temporary service outage
+     *
+     * @param  array|JsonResource  $errors  Optional structured error details.
+     * @return JsonResponse The formatted JSON response.
+     */
+    public function unavailable(array|JsonResource $errors = []): JsonResponse
+    {
+        return (
+            new ServiceUnavailableResponse(
+                __('bersiv-api-response::messages.failures.unavailable_external_api'),
+                $errors
+            )
+        )->send();
+    }
 }

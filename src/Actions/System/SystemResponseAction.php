@@ -14,20 +14,19 @@ use NavidBakhtiary\BersivApiResponse\Responses\Failures\InternalServerErrorRespo
  */
 class SystemResponseAction
 {
-	/**
-	 * Return a default internal server error response.
-	 *
-	 * @param array|JsonResource $errors Optional structured error details.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public function serverError(array|JsonResource $errors = []): JsonResponse
-	{
-		return (
-			new InternalServerErrorResponse(
-				__('bersiv-api-response::messages.failures.server_error'),
-				$errors
-			)
-		)->send();
-	}
+    /**
+     * Return a default internal server error response.
+     *
+     * @param  array|JsonResource  $errors  Optional structured error details.
+     * @return JsonResponse The formatted JSON response.
+     */
+    public function serverError(array|JsonResource $errors = []): JsonResponse
+    {
+        return (
+            new InternalServerErrorResponse(
+                __('bersiv-api-response::messages.failures.server_error'),
+                $errors
+            )
+        )->send();
+    }
 }

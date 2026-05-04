@@ -13,14 +13,14 @@ use Illuminate\Http\Resources\Json\JsonResource;
  */
 class ForbiddenResponse extends FailureResponse
 {
-	/**
-	 * Create a new forbidden response instance.
-	 *
-	 * @param string $message The response message.
-	 * @param array|JsonResource $errors Optional structured error details.
-	 */
-	public function __construct(string $message, array|JsonResource $errors = [])
-	{
-		parent::__construct(JsonResponse::HTTP_FORBIDDEN, $message, $errors);
-	}
+    /**
+     * Create a new forbidden response instance.
+     *
+     * @param  string  $message  The response message.
+     * @param  array|JsonResource  $errors  Optional structured error details.
+     */
+    public function __construct(string $message, array|JsonResource $errors = [])
+    {
+        parent::__construct(JsonResponse::HTTP_FORBIDDEN, $message, $errors);
+    }
 }

@@ -9,93 +9,93 @@ use NavidBakhtiary\BersivApiResponse\Tests\TestCase;
 
 class RangesResponseActionDateRangeTest extends TestCase
 {
-	public function testDateRangeReturnsEmptySuccessContractWhenRangeIsEmpty(): void
-	{
-		$action = new RangesResponseAction();
+    public function test_date_range_returns_empty_success_contract_when_range_is_empty(): void
+    {
+        $action = new RangesResponseAction;
 
-		$response = $action->dateRange('user', []);
+        $response = $action->dateRange('user', []);
 
-		$response_data = $response->getData(true);
+        $response_data = $response->getData(true);
 
-		$this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
-		$this->assertTrue($response_data['success']);
-		$this->assertSame(
-			__('bersiv-api-response::messages.successful.empty_date_range', ['model' => 'user']),
-			$response_data['message']
-		);
-		$this->assertSame([], $response_data['data']);
-		$this->assertArrayHasKey('data', $response_data);
-		$this->assertArrayHasKey('message', $response_data);
-		$this->assertArrayHasKey('success', $response_data);
-		$this->assertArrayNotHasKey('errors', $response_data);
-	}
+        $this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
+        $this->assertTrue($response_data['success']);
+        $this->assertSame(
+            __('bersiv-api-response::messages.successful.empty_date_range', ['model' => 'user']),
+            $response_data['message']
+        );
+        $this->assertSame([], $response_data['data']);
+        $this->assertArrayHasKey('data', $response_data);
+        $this->assertArrayHasKey('message', $response_data);
+        $this->assertArrayHasKey('success', $response_data);
+        $this->assertArrayNotHasKey('errors', $response_data);
+    }
 
-	public function testDateRangeReturnsEmptySuccessContractWhenRangeIsOmitted(): void
-	{
-		$action = new RangesResponseAction();
+    public function test_date_range_returns_empty_success_contract_when_range_is_omitted(): void
+    {
+        $action = new RangesResponseAction;
 
-		$response = $action->dateRange('user');
+        $response = $action->dateRange('user');
 
-		$response_data = $response->getData(true);
+        $response_data = $response->getData(true);
 
-		$this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
-		$this->assertTrue($response_data['success']);
-		$this->assertSame(
-			__('bersiv-api-response::messages.successful.empty_date_range', ['model' => 'user']),
-			$response_data['message']
-		);
-		$this->assertSame([], $response_data['data']);
-		$this->assertArrayHasKey('data', $response_data);
-		$this->assertArrayNotHasKey('errors', $response_data);
-	}
+        $this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
+        $this->assertTrue($response_data['success']);
+        $this->assertSame(
+            __('bersiv-api-response::messages.successful.empty_date_range', ['model' => 'user']),
+            $response_data['message']
+        );
+        $this->assertSame([], $response_data['data']);
+        $this->assertArrayHasKey('data', $response_data);
+        $this->assertArrayNotHasKey('errors', $response_data);
+    }
 
-	public function testDateRangeReturnsSuccessContractWhenRangeExists(): void
-	{
-		$action = new RangesResponseAction();
+    public function test_date_range_returns_success_contract_when_range_exists(): void
+    {
+        $action = new RangesResponseAction;
 
-		$payload = [
-			'end_date' => '2026-12-31',
-			'start_date' => '2026-01-01',
-		];
+        $payload = [
+            'end_date' => '2026-12-31',
+            'start_date' => '2026-01-01',
+        ];
 
-		$response = $action->dateRange('user', $payload);
+        $response = $action->dateRange('user', $payload);
 
-		$response_data = $response->getData(true);
+        $response_data = $response->getData(true);
 
-		$this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
-		$this->assertTrue($response_data['success']);
-		$this->assertSame(
-			__('bersiv-api-response::messages.successful.date_range_retrieved', ['model' => 'user']),
-			$response_data['message']
-		);
-		$this->assertSame($payload, $response_data['data']);
-		$this->assertArrayHasKey('data', $response_data);
-		$this->assertArrayNotHasKey('errors', $response_data);
-	}
+        $this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
+        $this->assertTrue($response_data['success']);
+        $this->assertSame(
+            __('bersiv-api-response::messages.successful.date_range_retrieved', ['model' => 'user']),
+            $response_data['message']
+        );
+        $this->assertSame($payload, $response_data['data']);
+        $this->assertArrayHasKey('data', $response_data);
+        $this->assertArrayNotHasKey('errors', $response_data);
+    }
 
-	public function testDateRangeReturnsSuccessContractWithJsonResourceData(): void
-	{
-		$action = new RangesResponseAction();
+    public function test_date_range_returns_success_contract_with_json_resource_data(): void
+    {
+        $action = new RangesResponseAction;
 
-		$payload = [
-			'end_date' => '2026-12-31',
-			'start_date' => '2026-01-01',
-		];
+        $payload = [
+            'end_date' => '2026-12-31',
+            'start_date' => '2026-01-01',
+        ];
 
-		$resource = JsonResource::make($payload);
+        $resource = JsonResource::make($payload);
 
-		$response = $action->dateRange('user', $resource);
+        $response = $action->dateRange('user', $resource);
 
-		$response_data = $response->getData(true);
+        $response_data = $response->getData(true);
 
-		$this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
-		$this->assertTrue($response_data['success']);
-		$this->assertSame(
-			__('bersiv-api-response::messages.successful.date_range_retrieved', ['model' => 'user']),
-			$response_data['message']
-		);
-		$this->assertSame($payload, $response_data['data']);
-		$this->assertArrayHasKey('data', $response_data);
-		$this->assertArrayNotHasKey('errors', $response_data);
-	}
+        $this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
+        $this->assertTrue($response_data['success']);
+        $this->assertSame(
+            __('bersiv-api-response::messages.successful.date_range_retrieved', ['model' => 'user']),
+            $response_data['message']
+        );
+        $this->assertSame($payload, $response_data['data']);
+        $this->assertArrayHasKey('data', $response_data);
+        $this->assertArrayNotHasKey('errors', $response_data);
+    }
 }

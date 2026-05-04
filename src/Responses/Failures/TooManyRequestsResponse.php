@@ -10,14 +10,14 @@ use Illuminate\Http\Resources\Json\JsonResource;
  */
 class TooManyRequestsResponse extends FailureResponse
 {
-	/**
-	 * Create a new too many requests response instance.
-	 *
-	 * @param string $message The response message.
-	 * @param array|JsonResource $errors Optional structured error details.
-	 */
-	public function __construct(string $message, array|JsonResource $errors = [])
-	{
-		parent::__construct(JsonResponse::HTTP_TOO_MANY_REQUESTS, $message, $errors);
-	}
+    /**
+     * Create a new too many requests response instance.
+     *
+     * @param  string  $message  The response message.
+     * @param  array|JsonResource  $errors  Optional structured error details.
+     */
+    public function __construct(string $message, array|JsonResource $errors = [])
+    {
+        parent::__construct(JsonResponse::HTTP_TOO_MANY_REQUESTS, $message, $errors);
+    }
 }

@@ -14,14 +14,14 @@ use Illuminate\Http\Resources\Json\JsonResource;
  */
 class OkResponse extends SuccessResponse
 {
-	/**
-	 * Create a new OK response instance.
-	 *
-	 * @param string $message The response message.
-	 * @param array|JsonResource $data Optional response data payload.
-	 */
-	public function __construct(string $message, array|JsonResource $data = [])
-	{
-		parent::__construct(JsonResponse::HTTP_OK, $message, $data);
-	}
+    /**
+     * Create a new OK response instance.
+     *
+     * @param  string  $message  The response message.
+     * @param  array|JsonResource  $data  Optional response data payload.
+     */
+    public function __construct(string $message, array|JsonResource $data = [])
+    {
+        parent::__construct(JsonResponse::HTTP_OK, $message, $data);
+    }
 }

@@ -10,14 +10,14 @@ use Illuminate\Http\Resources\Json\JsonResource;
  */
 class NotFoundResponse extends FailureResponse
 {
-	/**
-	 * Create a new not found response instance.
-	 *
-	 * @param string $message The response message.
-	 * @param array|JsonResource $errors Optional structured error details.
-	 */
-	public function __construct(string $message, array|JsonResource $errors = [])
-	{
-		parent::__construct(JsonResponse::HTTP_NOT_FOUND, $message, $errors);
-	}
+    /**
+     * Create a new not found response instance.
+     *
+     * @param  string  $message  The response message.
+     * @param  array|JsonResource  $errors  Optional structured error details.
+     */
+    public function __construct(string $message, array|JsonResource $errors = [])
+    {
+        parent::__construct(JsonResponse::HTTP_NOT_FOUND, $message, $errors);
+    }
 }

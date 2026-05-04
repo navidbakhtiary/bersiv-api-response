@@ -22,69 +22,66 @@ use NavidBakhtiary\BersivApiResponse\Responses\Failures\UnprocessableEntityRespo
  */
 class ValidationResponseAction
 {
-	/**
-	 * Return a response for invalid attributes.
-	 *
-	 * This is useful when one or more requested attributes are not allowed
-	 * or do not exist in the expected context.
-	 *
-	 * @param array $attributes The invalid attribute names.
-	 * @param array|JsonResource $errors Optional structured error details.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public function invalidAttributes(array $attributes, array|JsonResource $errors = []): JsonResponse
-	{
-		return (
-			new UnprocessableEntityResponse(
-				__(
-					'bersiv-api-response::messages.failures.invalid_attributes',
-					[
-						'attributes' => Utilities::createStringFromArray($attributes),
-					]
-				),
-				$errors
-			)
-		)->send();
-	}
+    /**
+     * Return a response for invalid attributes.
+     *
+     * This is useful when one or more requested attributes are not allowed
+     * or do not exist in the expected context.
+     *
+     * @param  array  $attributes  The invalid attribute names.
+     * @param  array|JsonResource  $errors  Optional structured error details.
+     * @return JsonResponse The formatted JSON response.
+     */
+    public function invalidAttributes(array $attributes, array|JsonResource $errors = []): JsonResponse
+    {
+        return (
+            new UnprocessableEntityResponse(
+                __(
+                    'bersiv-api-response::messages.failures.invalid_attributes',
+                    [
+                        'attributes' => Utilities::createStringFromArray($attributes),
+                    ]
+                ),
+                $errors
+            )
+        )->send();
+    }
 
-	/**
-	 * Return a response for invalid captcha verification.
-	 *
-	 * This is useful when the request is blocked because captcha validation
-	 * did not pass.
-	 *
-	 * @param array|JsonResource $errors Optional structured error details.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public function invalidCaptcha(array|JsonResource $errors = []): JsonResponse
-	{
-		return (
-			new ForbiddenResponse(
-				__('bersiv-api-response::messages.failures.invalid_captcha'),
-				$errors
-			)
-		)->send();
-	}
+    /**
+     * Return a response for invalid captcha verification.
+     *
+     * This is useful when the request is blocked because captcha validation
+     * did not pass.
+     *
+     * @param  array|JsonResource  $errors  Optional structured error details.
+     * @return JsonResponse The formatted JSON response.
+     */
+    public function invalidCaptcha(array|JsonResource $errors = []): JsonResponse
+    {
+        return (
+            new ForbiddenResponse(
+                __('bersiv-api-response::messages.failures.invalid_captcha'),
+                $errors
+            )
+        )->send();
+    }
 
-	/**
-	 * Return a response for invalid request inputs.
-	 *
-	 * This is useful for general validation failures, malformed input,
-	 * or request data that does not meet application rules.
-	 *
-	 * @param array|JsonResource $errors Optional structured validation errors.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public function invalidInputs(array|JsonResource $errors = []): JsonResponse
-	{
-		return (
-			new UnprocessableEntityResponse(
-				$message ?? __('bersiv-api-response::messages.failures.invalid_inputs'),
-				$errors
-			)
-		)->send();
-	}
+    /**
+     * Return a response for invalid request inputs.
+     *
+     * This is useful for general validation failures, malformed input,
+     * or request data that does not meet application rules.
+     *
+     * @param  array|JsonResource  $errors  Optional structured validation errors.
+     * @return JsonResponse The formatted JSON response.
+     */
+    public function invalidInputs(array|JsonResource $errors = []): JsonResponse
+    {
+        return (
+            new UnprocessableEntityResponse(
+                $message ?? __('bersiv-api-response::messages.failures.invalid_inputs'),
+                $errors
+            )
+        )->send();
+    }
 }

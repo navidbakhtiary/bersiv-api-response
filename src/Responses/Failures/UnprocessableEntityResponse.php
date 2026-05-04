@@ -4,7 +4,6 @@ namespace NavidBakhtiary\BersivApiResponse\Responses\Failures;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
-use NavidBakhtiary\BersivApiResponse\Helpers\Utilities;
 
 /**
  * Represents HTTP 422 Unprocessable Entity responses.
@@ -15,14 +14,14 @@ use NavidBakhtiary\BersivApiResponse\Helpers\Utilities;
  */
 class UnprocessableEntityResponse extends FailureResponse
 {
-	/**
-	 * Create a new unprocessable entity response instance.
-	 *
-	 * @param string $message The response message.
-	 * @param array|JsonResource $errors Optional structured error details.
-	 */
-	public function __construct(string $message, array|JsonResource $errors = [])
-	{
-		parent::__construct(JsonResponse::HTTP_UNPROCESSABLE_ENTITY, $message, $errors);
-	}
+    /**
+     * Create a new unprocessable entity response instance.
+     *
+     * @param  string  $message  The response message.
+     * @param  array|JsonResource  $errors  Optional structured error details.
+     */
+    public function __construct(string $message, array|JsonResource $errors = [])
+    {
+        parent::__construct(JsonResponse::HTTP_UNPROCESSABLE_ENTITY, $message, $errors);
+    }
 }

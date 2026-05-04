@@ -9,105 +9,105 @@ use NavidBakhtiary\BersivApiResponse\Tests\TestCase;
 
 class AiResponseActionAnswerTest extends TestCase
 {
-	public function testAnswerReturnsFailureContractWhenDataIsEmpty(): void
-	{
-		$action = new AiResponseAction();
+    public function test_answer_returns_failure_contract_when_data_is_empty(): void
+    {
+        $action = new AiResponseAction;
 
-		$response = $action->answer();
+        $response = $action->answer();
 
-		$response_data = $response->getData(true);
+        $response_data = $response->getData(true);
 
-		$this->assertSame(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
-		$this->assertFalse($response_data['success']);
-		$this->assertSame(__('bersiv-api-response::messages.failures.no_ai_answer'), $response_data['message']);
-		$this->assertSame([], $response_data['errors']);
-		$this->assertArrayHasKey('errors', $response_data);
-		$this->assertArrayNotHasKey('data', $response_data);
-	}
+        $this->assertSame(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
+        $this->assertFalse($response_data['success']);
+        $this->assertSame(__('bersiv-api-response::messages.failures.no_ai_answer'), $response_data['message']);
+        $this->assertSame([], $response_data['errors']);
+        $this->assertArrayHasKey('errors', $response_data);
+        $this->assertArrayNotHasKey('data', $response_data);
+    }
 
-	public function testAnswerReturnsFailureContractWithGivenErrorsWhenDataIsEmpty(): void
-	{
-		$action = new AiResponseAction();
+    public function test_answer_returns_failure_contract_with_given_errors_when_data_is_empty(): void
+    {
+        $action = new AiResponseAction;
 
-		$errors = [
-			'answer' => ['No matching AI answer was found.'],
-		];
+        $errors = [
+            'answer' => ['No matching AI answer was found.'],
+        ];
 
-		$response = $action->answer(null, $errors);
+        $response = $action->answer(null, $errors);
 
-		$response_data = $response->getData(true);
+        $response_data = $response->getData(true);
 
-		$this->assertSame(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
-		$this->assertFalse($response_data['success']);
-		$this->assertSame(__('bersiv-api-response::messages.failures.no_ai_answer'), $response_data['message']);
-		$this->assertSame($errors, $response_data['errors']);
-		$this->assertArrayHasKey('errors', $response_data);
-		$this->assertArrayNotHasKey('data', $response_data);
-	}
+        $this->assertSame(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
+        $this->assertFalse($response_data['success']);
+        $this->assertSame(__('bersiv-api-response::messages.failures.no_ai_answer'), $response_data['message']);
+        $this->assertSame($errors, $response_data['errors']);
+        $this->assertArrayHasKey('errors', $response_data);
+        $this->assertArrayNotHasKey('data', $response_data);
+    }
 
-	public function testAnswerReturnsFailureContractWithJsonResourceErrorsWhenDataIsEmpty(): void
-	{
-		$action = new AiResponseAction();
+    public function test_answer_returns_failure_contract_with_json_resource_errors_when_data_is_empty(): void
+    {
+        $action = new AiResponseAction;
 
-		$errors = [
-			'answer' => ['No matching AI answer was found.'],
-		];
+        $errors = [
+            'answer' => ['No matching AI answer was found.'],
+        ];
 
-		$resource = JsonResource::make($errors);
+        $resource = JsonResource::make($errors);
 
-		$response = $action->answer(null, $resource);
+        $response = $action->answer(null, $resource);
 
-		$response_data = $response->getData(true);
+        $response_data = $response->getData(true);
 
-		$this->assertSame(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
-		$this->assertFalse($response_data['success']);
-		$this->assertSame(__('bersiv-api-response::messages.failures.no_ai_answer'), $response_data['message']);
-		$this->assertSame($errors, $response_data['errors']);
-		$this->assertArrayHasKey('errors', $response_data);
-		$this->assertArrayNotHasKey('data', $response_data);
-	}
+        $this->assertSame(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
+        $this->assertFalse($response_data['success']);
+        $this->assertSame(__('bersiv-api-response::messages.failures.no_ai_answer'), $response_data['message']);
+        $this->assertSame($errors, $response_data['errors']);
+        $this->assertArrayHasKey('errors', $response_data);
+        $this->assertArrayNotHasKey('data', $response_data);
+    }
 
-	public function testAnswerReturnsSuccessContractWithArrayData(): void
-	{
-		$action = new AiResponseAction();
+    public function test_answer_returns_success_contract_with_array_data(): void
+    {
+        $action = new AiResponseAction;
 
-		$data = [
-			'answer' => 'This is the generated AI answer.',
-			'source' => 'rag',
-		];
+        $data = [
+            'answer' => 'This is the generated AI answer.',
+            'source' => 'rag',
+        ];
 
-		$response = $action->answer($data);
+        $response = $action->answer($data);
 
-		$response_data = $response->getData(true);
+        $response_data = $response->getData(true);
 
-		$this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
-		$this->assertTrue($response_data['success']);
-		$this->assertSame(__('bersiv-api-response::messages.successful.ai_answer_generated'), $response_data['message']);
-		$this->assertSame($data, $response_data['data']);
-		$this->assertArrayHasKey('data', $response_data);
-		$this->assertArrayNotHasKey('errors', $response_data);
-	}
+        $this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
+        $this->assertTrue($response_data['success']);
+        $this->assertSame(__('bersiv-api-response::messages.successful.ai_answer_generated'), $response_data['message']);
+        $this->assertSame($data, $response_data['data']);
+        $this->assertArrayHasKey('data', $response_data);
+        $this->assertArrayNotHasKey('errors', $response_data);
+    }
 
-	public function testAnswerReturnsSuccessContractWithJsonResourceData(): void
-	{
-		$action = new AiResponseAction();
+    public function test_answer_returns_success_contract_with_json_resource_data(): void
+    {
+        $action = new AiResponseAction;
 
-		$data = [
-			'answer' => 'This is the generated AI answer.',
-			'source' => 'rag',
-		];
+        $data = [
+            'answer' => 'This is the generated AI answer.',
+            'source' => 'rag',
+        ];
 
-		$resource = JsonResource::make($data);
+        $resource = JsonResource::make($data);
 
-		$response = $action->answer($resource);
+        $response = $action->answer($resource);
 
-		$response_data = $response->getData(true);
+        $response_data = $response->getData(true);
 
-		$this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
-		$this->assertTrue($response_data['success']);
-		$this->assertSame(__('bersiv-api-response::messages.successful.ai_answer_generated'), $response_data['message']);
-		$this->assertSame($data, $response_data['data']);
-		$this->assertArrayHasKey('data', $response_data);
-		$this->assertArrayNotHasKey('errors', $response_data);
-	}
+        $this->assertSame(JsonResponse::HTTP_OK, $response->getStatusCode());
+        $this->assertTrue($response_data['success']);
+        $this->assertSame(__('bersiv-api-response::messages.successful.ai_answer_generated'), $response_data['message']);
+        $this->assertSame($data, $response_data['data']);
+        $this->assertArrayHasKey('data', $response_data);
+        $this->assertArrayNotHasKey('errors', $response_data);
+    }
 }

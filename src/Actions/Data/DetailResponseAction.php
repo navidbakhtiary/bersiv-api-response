@@ -20,32 +20,30 @@ use NavidBakhtiary\BersivApiResponse\Responses\Successes\OkResponse;
  */
 class DetailResponseAction
 {
-	/**
-	 * Return a detail response for a single entity.
-	 *
-	 * @param string $model_name The entity/model display name used in messages.
-	 * @param array|JsonResource $model_resource The resolved resource data or null.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public function handle(string $model_name, array|JsonResource $model_resource = []): JsonResponse
-	{
-		if (Utilities::isResourceEmpty($model_resource))
-		{
-			return (
-				new NotFoundResponse(
-					__('bersiv-api-response::messages.failures.entity_not_found', [
-						'entity' => $model_name,
-					]),
-				)
-			)->send();
-		}
+    /**
+     * Return a detail response for a single entity.
+     *
+     * @param  string  $model_name  The entity/model display name used in messages.
+     * @param  array|JsonResource  $model_resource  The resolved resource data or null.
+     * @return JsonResponse The formatted JSON response.
+     */
+    public function handle(string $model_name, array|JsonResource $model_resource = []): JsonResponse
+    {
+        if (Utilities::isResourceEmpty($model_resource)) {
+            return (
+                new NotFoundResponse(
+                    __('bersiv-api-response::messages.failures.entity_not_found', [
+                        'entity' => $model_name,
+                    ]),
+                )
+            )->send();
+        }
 
-		return (
-			new OkResponse(
-				__('bersiv-api-response::messages.successful.model_found', ['model' => $model_name]),
-				$model_resource
-			)
-		)->send();
-	}
+        return (
+            new OkResponse(
+                __('bersiv-api-response::messages.successful.model_found', ['model' => $model_name]),
+                $model_resource
+            )
+        )->send();
+    }
 }

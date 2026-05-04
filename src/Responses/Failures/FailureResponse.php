@@ -12,18 +12,18 @@ use NavidBakhtiary\BersivApiResponse\Responses\ApiResponse;
  */
 class FailureResponse extends ApiResponse
 {
-	/**
-	 * Create a new failure response instance.
-	 *
-	 * @param int $status_code The HTTP status code.
-	 * @param string $message The response message.
-	 * @param array|JsonResource $errors Optional structured error details.
-	 */
-	public function __construct(int $status_code, string $message, array|JsonResource $errors = [])
-	{
-		parent::__construct($status_code, $message, $errors);
+    /**
+     * Create a new failure response instance.
+     *
+     * @param  int  $status_code  The HTTP status code.
+     * @param  string  $message  The response message.
+     * @param  array|JsonResource  $errors  Optional structured error details.
+     */
+    public function __construct(int $status_code, string $message, array|JsonResource $errors = [])
+    {
+        parent::__construct($status_code, $message, $errors);
 
-		$this->is_successful = false;
-		$this->setResponseContent('errors');
-	}
+        $this->is_successful = false;
+        $this->setResponseContent('errors');
+    }
 }

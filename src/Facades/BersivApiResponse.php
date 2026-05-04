@@ -3,6 +3,7 @@
 namespace NavidBakhtiary\BersivApiResponse\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use NavidBakhtiary\BersivApiResponse\Managers\BersivApiResponseManager;
 
 /**
  * Facade for accessing Bersiv API response actions.
@@ -37,12 +38,12 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Illuminate\Http\JsonResponse unauthenticated(array|\Illuminate\Http\Resources\Json\JsonResource $errors = [])
  * @method static \Illuminate\Http\JsonResponse valuesList(string $model_name, string $attribute, array|\Illuminate\Http\Resources\Json\JsonResource $values = [])
  *
- * @see \NavidBakhtiary\BersivApiResponse\Managers\BersivApiResponseManager
+ * @see BersivApiResponseManager
  */
 class BersivApiResponse extends Facade
 {
-	protected static function getFacadeAccessor(): string
-	{
-		return 'bersiv-api-response';
-	}
+    protected static function getFacadeAccessor(): string
+    {
+        return 'bersiv-api-response';
+    }
 }

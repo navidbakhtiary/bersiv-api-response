@@ -32,43 +32,41 @@ use NavidBakhtiary\BersivApiResponse\Managers\Concerns\HandlesValidationResponse
  */
 class BersivApiResponseManager
 {
-	use HandlesAiResponses;
-	use HandlesAuthenticationResponses;
-	use HandlesDataResponses;
-	use HandlesExternalApiResponses;
-	use HandlesProcessResponses;
-	use HandlesRateLimitResponses;
-	use HandlesSystemResponses;
-	use HandlesValidationResponses;
+    use HandlesAiResponses;
+    use HandlesAuthenticationResponses;
+    use HandlesDataResponses;
+    use HandlesExternalApiResponses;
+    use HandlesProcessResponses;
+    use HandlesRateLimitResponses;
+    use HandlesSystemResponses;
+    use HandlesValidationResponses;
 
-	/**
-	 * Create a new manager instance.
-	 *
-	 * @param AiResponseAction $ai_response_action Handles AI-related responses.
-	 * @param AuthenticationResponseAction $authentication_response_action Handles authentication-related responses.
-	 * @param DetailResponseAction $detail_response_action Handles single-resource detail responses.
-	 * @param ExternalApiResponseAction $external_api_response_action Handles external API failure responses.
-	 * @param ListResponseAction $list_response_action Handles list and collection responses.
-	 * @param ProcessResponseAction $process_response_action Handles background process responses.
-	 * @param RangesResponseAction $ranges_response_action Handles attribute/date range responses.
-	 * @param RateLimitResponseAction $rate_limit_response_action Handles too many requests responses.
-	 * @param SystemResponseAction $system_response_action Handles system-level responses.
-	 * @param ValidationResponseAction $validation_response_action Handles validation-related failure responses.
-	 * @param ValuesResponseAction $values_response_action Handles attribute values responses.
-	 */
-	public function __construct(
-		protected AiResponseAction $ai_response_action,
-		protected AuthenticationResponseAction $authentication_response_action,
-		protected DetailResponseAction $detail_response_action,
-		protected ExternalApiResponseAction $external_api_response_action,
-		protected ListResponseAction $list_response_action,
-		protected ProcessResponseAction $process_response_action,
-		protected RangesResponseAction $ranges_response_action,
-		protected RateLimitResponseAction $rate_limit_response_action,
-		protected SystemResponseAction $system_response_action,
-		protected ValidationResponseAction $validation_response_action,
-		protected ValuesResponseAction $values_response_action,
-	)
-	{
-	}
+    /**
+     * Create a new manager instance.
+     *
+     * @param  AiResponseAction  $ai_response_action  Handles AI-related responses.
+     * @param  AuthenticationResponseAction  $authentication_response_action  Handles authentication-related responses.
+     * @param  DetailResponseAction  $detail_response_action  Handles single-resource detail responses.
+     * @param  ExternalApiResponseAction  $external_api_response_action  Handles external API failure responses.
+     * @param  ListResponseAction  $list_response_action  Handles list and collection responses.
+     * @param  ProcessResponseAction  $process_response_action  Handles background process responses.
+     * @param  RangesResponseAction  $ranges_response_action  Handles attribute/date range responses.
+     * @param  RateLimitResponseAction  $rate_limit_response_action  Handles too many requests responses.
+     * @param  SystemResponseAction  $system_response_action  Handles system-level responses.
+     * @param  ValidationResponseAction  $validation_response_action  Handles validation-related failure responses.
+     * @param  ValuesResponseAction  $values_response_action  Handles attribute values responses.
+     */
+    public function __construct(
+        protected AiResponseAction $ai_response_action,
+        protected AuthenticationResponseAction $authentication_response_action,
+        protected DetailResponseAction $detail_response_action,
+        protected ExternalApiResponseAction $external_api_response_action,
+        protected ListResponseAction $list_response_action,
+        protected ProcessResponseAction $process_response_action,
+        protected RangesResponseAction $ranges_response_action,
+        protected RateLimitResponseAction $rate_limit_response_action,
+        protected SystemResponseAction $system_response_action,
+        protected ValidationResponseAction $validation_response_action,
+        protected ValuesResponseAction $values_response_action,
+    ) {}
 }

@@ -18,31 +18,30 @@ use NavidBakhtiary\BersivApiResponse\Responses\Successes\OkResponse;
  */
 class ValuesResponseAction
 {
-	/**
-	 * Return a response for a list of attribute values.
-	 *
-	 * @param string $model_name The entity/model display name used in messages.
-	 * @param string $attribute The attribute name used in messages.
-	 * @param array|JsonResource $values The list of values for the given attribute.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public function handle(string $model_name, string $attribute, array|JsonResource $values = []): JsonResponse
-	{
-		$values_count = is_array($values)
-			? count($values)
-			: count($values->resolve());
+    /**
+     * Return a response for a list of attribute values.
+     *
+     * @param  string  $model_name  The entity/model display name used in messages.
+     * @param  string  $attribute  The attribute name used in messages.
+     * @param  array|JsonResource  $values  The list of values for the given attribute.
+     * @return JsonResponse The formatted JSON response.
+     */
+    public function handle(string $model_name, string $attribute, array|JsonResource $values = []): JsonResponse
+    {
+        $values_count = is_array($values)
+            ? count($values)
+            : count($values->resolve());
 
-		$message = $values_count > 0
-			? __('bersiv-api-response::messages.successful.values_list_retrieved', [
-				'model' => $model_name,
-				'attribute' => $attribute,
-			])
-			: __('bersiv-api-response::messages.successful.empty_values_list', [
-				'model' => $model_name,
-				'attribute' => $attribute,
-			]);
+        $message = $values_count > 0
+            ? __('bersiv-api-response::messages.successful.values_list_retrieved', [
+                'model' => $model_name,
+                'attribute' => $attribute,
+            ])
+            : __('bersiv-api-response::messages.successful.empty_values_list', [
+                'model' => $model_name,
+                'attribute' => $attribute,
+            ]);
 
-		return (new OkResponse($message, $values))->send();
-	}
+        return (new OkResponse($message, $values))->send();
+    }
 }

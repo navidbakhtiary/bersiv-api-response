@@ -10,15 +10,14 @@ use Illuminate\Http\Resources\Json\JsonResource;
  */
 trait HandlesRateLimitResponses
 {
-	/**
-	 * Return a default too many requests response.
-	 *
-	 * @param array|JsonResource $errors Optional structured error details.
-	 *
-	 * @return JsonResponse The formatted JSON response.
-	 */
-	public function tooManyRequests(array|JsonResource $errors = []): JsonResponse
-	{
-		return $this->rate_limit_response_action->tooManyRequests($errors);
-	}
+    /**
+     * Return a default too many requests response.
+     *
+     * @param  array|JsonResource  $errors  Optional structured error details.
+     * @return JsonResponse The formatted JSON response.
+     */
+    public function tooManyRequests(array|JsonResource $errors = []): JsonResponse
+    {
+        return $this->rate_limit_response_action->tooManyRequests($errors);
+    }
 }
