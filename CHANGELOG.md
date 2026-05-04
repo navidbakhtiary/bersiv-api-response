@@ -57,4 +57,7 @@ The format is based on Keep a Changelog, and this project follows semantic versi
 - General message translation file support through `messages.php`.
 - Publishable translation files using the `bersiv-api-response-translations` tag.
 - PHPUnit and Orchestra Testbench test coverage.
-- Documentation for installation, response types, facade API, usage examples, authentication responses, translations, testing, and release checklist.
+- Laravel Pint code style tooling.
+- Larastan / PHPStan static analysis tooling.
+- Composer scripts for tests, code style checks, automatic formatting, and static analysis.
+- Documentation for installation, response types, facade API, usage examples, authentication responses, translations, PHPDoc style, testing, and release checklist.

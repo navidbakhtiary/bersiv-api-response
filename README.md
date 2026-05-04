@@ -95,6 +95,8 @@ Some methods treat an empty payload as a missing result:
 - Namespaced translation support
 - Publishable translation files
 - PHPUnit and Orchestra Testbench test coverage
+- Laravel Pint code style checks
+- Larastan / PHPStan static analysis
 
 ## Requirements
 
@@ -272,10 +274,30 @@ lang/vendor/bersiv-api-response
 - [Testing](docs/testing.md)
 - [Publishing Checklist](docs/publishing-checklist.md)
 
-## Running Tests
+## Code Quality
+
+Run the test suite:
 
 ```bash
-./vendor/bin/phpunit
+composer test
+```
+
+Check code style without changing files:
+
+```bash
+composer pint-test
+```
+
+Fix code style automatically:
+
+```bash
+composer pint
+```
+
+Run static analysis:
+
+```bash
+composer analyse
 ```
 
 ## License
