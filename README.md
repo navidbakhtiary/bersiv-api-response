@@ -14,6 +14,12 @@ use NavidBakhtiary\BersivApiResponse\Facades\BersivApiResponse;
 return BersivApiResponse::detail('user', $user_resource);
 ```
 
+## Name
+
+`Bersiv` means `response` or `answer` in Kurdish.
+
+The package name reflects its purpose: providing clear and consistent API responses for Laravel applications.
+
 ## Purpose
 
 The package is designed to make API responses:
